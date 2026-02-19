@@ -1,87 +1,110 @@
-import React, { useRef, useMemo } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import * as THREE from 'three';
-
-// Explicitly cast R3F elements to 'any' to bypass TS introspection issues with intrinsic elements
-const Points = 'points' as any;
-const BufferGeometry = 'bufferGeometry' as any;
-const BufferAttribute = 'bufferAttribute' as any;
-const PointsMaterial = 'pointsMaterial' as any;
-
-const ParticleField = () => {
-  const mesh = useRef<THREE.Points>(null);
-  const { mouse, viewport } = useThree();
-  const count = 2500;
-
-  // Generate random vertices
-  const particlesPosition = useMemo(() => {
-    const positions = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      // randFloatSpread(100) equivalent
-      positions[i * 3] = (Math.random() - 0.5) * 100; // x
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 100; // y
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 100; // z
-    }
-    return positions;
-  }, [count]);
-
-  useFrame((state) => {
-    if (!mesh.current) return;
-
-    // Rotate particles gently
-    mesh.current.rotation.x += 0.0005;
-    mesh.current.rotation.y += 0.0005;
-
-    // Mouse Interaction
-    // Calculate target based on mouse (-1 to 1) mapped to viewport
-    const targetX = (mouse.x * viewport.width) / 100;
-    const targetY = (mouse.y * viewport.height) / 100;
-
-    // Smooth lerp for parallax
-    mesh.current.position.x += (targetX - mesh.current.position.x) * 0.05;
-    mesh.current.position.y += (-targetY - mesh.current.position.y) * 0.05;
-  });
-
-  return (
-    <Points ref={mesh}>
-      <BufferGeometry>
-        <BufferAttribute
-          attach="attributes-position"
-          count={count}
-          array={particlesPosition}
-          itemSize={3}
-        />
-      </BufferGeometry>
-      <PointsMaterial 
-        color={0x4f46e5} 
-        size={0.15} 
-        sizeAttenuation={true} 
-        transparent={true}
-        opacity={0.8}
-        depthWrite={false} // OPTIMIZATION: Disable depth write for transparent particles
-      />
-    </Points>
-  );
-};
+import React, { useEffect, useRef } from 'react';
 
 const HeroParticles: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let particles: Particle[] = [];
+
+    class Particle {
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      opacity: number;
+
+      constructor() {
+        this.x = Math.random() * canvas!.width;
+        this.y = Math.random() * canvas!.height;
+        this.size = Math.random() * 1 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.opacity = Math.random() * 0.5 + 0.1;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas!.width) this.x = 0;
+        else if (this.x < 0) this.x = canvas!.width;
+        if (this.y > canvas!.height) this.y = 0;
+        else if (this.y < 0) this.y = canvas!.height;
+      }
+
+      draw() {
+        if (!ctx) return;
+        ctx.fillStyle = `rgba(37, 99, 235, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    const init = () => {
+      particles = [];
+      const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach((particle, i) => {
+        particle.update();
+        particle.draw();
+
+        // Draw connections
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particle.x - particles[j].x;
+          const dy = particle.y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(37, 99, 235, ${0.1 * (1 - distance / 150)})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particle.x, particle.y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   return (
-    <div id="bg-canvas-container" className="absolute inset-0 z-0 pointer-events-none">
-      <Canvas
-        dpr={[1, 1.5]} // Cap DPR to 1.5 for performance
-        gl={{ 
-          antialias: false, // OPTIMIZATION: Disable AA for background particles
-          alpha: true,
-          powerPreference: "high-performance",
-          stencil: false,
-          depth: true 
-        }}
-        camera={{ position: [0, 0, 30], fov: 75 }} 
-        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-      >
-        <ParticleField />
-      </Canvas>
-    </div>
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 pointer-events-none opacity-40"
+    />
   );
 };
 

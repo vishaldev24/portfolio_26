@@ -133,7 +133,7 @@ const ParallaxCard: React.FC<ParallaxCardProps> = ({
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.05 }}
-          className="h-full"
+          className="h-full relative"
         >
             <GlassCard
                 className={`${className} overflow-hidden h-full`}
@@ -164,20 +164,8 @@ const BentoGrid: React.FC = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-        gsap.from(".tarang-card-wrapper", {
-            scrollTrigger: {
-                trigger: ".tarang-card-wrapper",
-                start: "top 95%",
-                toggleActions: "play none none reverse",
-                // Ensure the animation is as stable as possible
-                fastScrollEnd: true,
-                preventOverlaps: true,
-            },
-            y: 40,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power2.out"
-        });
+        // Removed conflicting GSAP animation for .tarang-card-wrapper 
+        // as it is already handled by Framer Motion's whileInView
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -191,13 +179,13 @@ const BentoGrid: React.FC = () => {
 
   return (
     <section ref={sectionRef} id="work" className="w-full py-24 md:py-32 px-4 md:px-12 lg:px-24 bg-paper-200 dark:bg-charcoal-900 transition-colors duration-500 relative">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.6 }}
-          className="mb-12 md:mb-16 flex items-baseline justify-between border-b border-black/10 dark:border-white/10 pb-6"
+          className="relative mb-12 md:mb-16 flex items-baseline justify-between border-b border-black/10 dark:border-white/10 pb-6"
         >
           <div className="overflow-hidden">
             <motion.h2 
@@ -205,7 +193,7 @@ const BentoGrid: React.FC = () => {
               whileInView={{ y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif text-3xl md:text-5xl font-semibold tracking-tight text-charcoal-900 dark:text-white"
+              className="relative font-serif text-3xl md:text-5xl font-semibold tracking-tight text-charcoal-900 dark:text-white"
             >
               Selected Work
             </motion.h2>
@@ -222,10 +210,11 @@ const BentoGrid: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="tarang-card-wrapper md:col-span-2 block group relative overflow-visible cursor-pointer min-h-[450px]"
+            style={{ willChange: "opacity, transform" }}
           >
             <TiltCard className="tarang-card h-full group relative overflow-visible"> 
               {/* Force the container to be solid to prevent context blanking */}
-              <div className="absolute inset-0 z-0 pointer-events-none transform-gpu">
+              <div className="absolute inset-0 z-0 pointer-events-none">
                  <Tarang3D />
                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/20 to-transparent pointer-events-none" />
               </div>

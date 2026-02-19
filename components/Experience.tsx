@@ -1,158 +1,109 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, CheckCircle2, TrendingDown, Layers, Users, Award, ShieldCheck } from 'lucide-react';
+import { Briefcase, Calendar, ChevronRight, Terminal } from 'lucide-react';
 
-const Experience: React.FC = () => {
-  const highlights = [
-    {
-      icon: <TrendingDown className="w-4 h-4" />,
-      text: "Reduced rejection rates from 30% to 10%, achieving 3% stability on targeted models"
-    },
-    {
-      icon: <Layers className="w-4 h-4" />,
-      text: "Implemented a severity-based classification system (P0/P1/P2) to optimize workflow prioritization"
-    },
-    {
-      icon: <Users className="w-4 h-4" />,
-      text: "Led day-to-day shift operations for 35+ team members"
-    },
-    {
-      icon: <Award className="w-4 h-4" />,
-      text: "Trained and mentored 40+ inspectors"
-    },
-    {
-      icon: <ShieldCheck className="w-4 h-4" />,
-      text: "Recognized multiple times for quality detection accuracy"
-    }
-  ];
+const experiences = [
+  {
+    company: 'TechFlow Systems',
+    role: 'Senior Product Designer',
+    period: '2024 - Present',
+    desc: 'Leading the design of complex enterprise dashboards and internal tools. Focused on establishing scalable design systems and improving operational efficiency.',
+    highlights: ['Design System Architecture', 'User Research', 'Prototyping']
+  },
+  {
+    company: 'Global Quality Ops',
+    role: 'Quality Systems Lead',
+    period: '2021 - 2023',
+    desc: 'Managed high-scale manufacturing quality systems. Led teams to implement metric-driven improvements in production lines.',
+    highlights: ['Root Cause Analysis', 'Process Optimization', 'Team Leadership']
+  },
+  {
+    company: 'Creative Studio',
+    role: 'UI/UX Designer',
+    period: '2019 - 2021',
+    desc: 'Crafted digital experiences for startups and established brands. Focused on interaction design and visual storytelling.',
+    highlights: ['Interface Design', 'Brand Identity', 'Web Development']
+  }
+];
 
-  const roles = [
-    "Line Inspector",
-    "QA Inspector",
-    "OQC Inspector",
-    "Sub-Leader / Dispatch Inspector"
-  ];
-
+const CareerTrajectory: React.FC = () => {
   return (
-    <section id="experience" className="w-full py-32 px-6 md:px-12 lg:px-24 bg-paper-100 dark:bg-charcoal-950 transition-colors duration-500 relative overflow-hidden">
-      {/* Background Decorative Accent */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-500/5 to-transparent pointer-events-none" />
+    <section id="experience" className="w-full py-32 px-6 md:px-12 lg:px-24 bg-charcoal-900 relative border-b border-white/5">
       
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-16"
-        >
-          <span className="text-blue-600 dark:text-blue-400 font-mono text-xs tracking-[0.3em] uppercase mb-4 block">Industrial Precision</span>
-          <h2 className="font-serif text-4xl md:text-6xl font-bold text-charcoal-900 dark:text-white">Professional Experience</h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+        <div className="flex flex-col md:flex-row gap-20">
           
-          {/* Left Column: Context & Progression */}
-          <div className="lg:col-span-4">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="sticky top-32"
-            >
-              <div className="mb-10">
-                <p className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest mb-6">Career Trajectory</p>
-                <div className="space-y-4">
-                  {roles.map((role, idx) => (
-                    <motion.div 
-                      key={idx} 
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.1 }}
-                      className="flex items-center gap-3 group"
-                    >
-                       <div className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${idx === roles.length - 1 ? 'bg-blue-600 scale-125 shadow-[0_0_8px_rgba(37,99,235,0.6)]' : 'bg-neutral-300 dark:bg-neutral-800'}`} />
-                       <span className={`text-sm font-medium tracking-tight transition-colors duration-300 ${idx === roles.length - 1 ? 'text-charcoal-900 dark:text-white' : 'text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-500'}`}>
-                         {role}
-                       </span>
-                    </motion.div>
-                  ))}
-                </div>
+          {/* Left: Section Info */}
+          <div className="md:w-1/3 space-y-8">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <Briefcase size={14} className="text-blue-500" />
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest opacity-60">Career Trajectory</span>
               </div>
-
-              <div className="p-6 rounded-2xl bg-white/40 dark:bg-white/5 border border-black/5 dark:border-white/10 backdrop-blur-sm">
-                <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed italic">
-                  "Developed a systems-driven mindset focused on structured workflows and measurable impact."
-                </p>
+              <h2 className="font-sans font-extrabold text-5xl uppercase tracking-tighter">
+                Professional <br/> <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.2)' }}>Log</span>
+              </h2>
+            </div>
+            <p className="text-sm font-light text-neutral-400 leading-relaxed">
+              A chronological record of my professional evolution, from industrial quality systems to digital product engineering.
+            </p>
+            
+            <div className="pt-8 border-t border-white/5 space-y-4">
+              <div className="flex items-center gap-3">
+                <Terminal size={12} className="text-blue-500" />
+                <span className="text-[10px] font-mono uppercase tracking-widest opacity-40">Total Experience: 5+ Years</span>
               </div>
-            </motion.div>
+              <div className="flex items-center gap-3">
+                <Terminal size={12} className="text-blue-500" />
+                <span className="text-[10px] font-mono uppercase tracking-widest opacity-40">Focus: Systems & UX</span>
+              </div>
+            </div>
           </div>
 
-          {/* Right Column: Main Experience Details */}
-          <div className="lg:col-span-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
-              {/* Company Header */}
-              <div className="mb-8">
-                <h3 className="font-display text-3xl md:text-4xl font-extrabold text-charcoal-900 dark:text-white tracking-tight">
-                  Radiant Appliances & Electronics Pvt. Ltd.
-                </h3>
-                
-                {/* 24-32px spacing as requested between Company and Title section */}
-                <div className="mt-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div>
-                    <h4 className="text-xl md:text-2xl font-serif font-medium text-blue-600 dark:text-blue-400">
-                      Sub-Leader – Quality Operations
-                    </h4>
-                    <p className="text-sm font-mono text-neutral-500 uppercase tracking-[0.2em] mt-1">2020 – 2023</p>
-                  </div>
-                  <div className="h-px flex-grow bg-black/5 dark:bg-white/5 mx-4 hidden sm:block" />
-                  <CheckCircle2 className="text-neutral-300 dark:text-neutral-700 w-8 h-8 hidden sm:block" />
-                </div>
-              </div>
-
-              {/* Tight Bullets with 12-16px spacing */}
-              <div className="space-y-4 mt-10">
-                {highlights.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 + 0.3 }}
-                    whileHover={{ x: 10 }}
-                    className="flex items-start gap-4 p-4 rounded-xl border border-transparent hover:border-black/5 dark:hover:border-white/5 hover:bg-white/50 dark:hover:bg-white/5 transition-all duration-300 group cursor-default"
-                  >
-                    <div className="mt-1.5 flex-shrink-0 w-6 h-6 rounded-md bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
-                      {item.icon}
+          <div className="md:w-2/3 space-y-px bg-white/5 border border-white/5">
+            {experiences.map((exp, idx) => (
+              <div key={idx} className="group relative bg-charcoal-900 p-8 md:p-12 hover:bg-white/[0.02] transition-colors">
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
+                />
+                <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-mono text-blue-500 uppercase tracking-widest">{exp.period}</span>
+                      <ChevronRight size={12} className="text-white/20" />
+                      <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest">{exp.company}</span>
                     </div>
-                    <p className="text-base md:text-lg text-neutral-700 dark:text-neutral-300 leading-snug font-normal">
-                      • {item.text}
+                    <h3 className="font-sans font-bold text-2xl md:text-3xl uppercase tracking-tight group-hover:text-blue-500 transition-colors">
+                      {exp.role}
+                    </h3>
+                    <p className="text-base font-light text-neutral-400 leading-relaxed max-w-xl">
+                      {exp.desc}
                     </p>
-                  </motion.div>
-                ))}
-              </div>
+                  </div>
 
-              {/* Visual Closure */}
-              <div className="mt-16 pt-8 border-t border-black/5 dark:border-white/10 flex items-center justify-between opacity-50">
-                <div className="flex gap-1">
-                   {[1,2,3,4,5].map(i => <div key={i} className="w-1 h-1 bg-neutral-400 rounded-full" />)}
+                  <div className="flex flex-wrap md:flex-col gap-2">
+                    {exp.highlights.map(h => (
+                      <span key={h} className="text-[9px] font-mono px-2 py-1 border border-white/10 rounded uppercase opacity-40 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                        {h}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <span className="text-[10px] font-mono uppercase tracking-[0.4em]">End_of_Transmission</span>
+
+                {/* Hover Indicator */}
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-500" />
               </div>
-            </motion.div>
+            ))}
           </div>
-          
+
         </div>
       </div>
     </section>
   );
 };
 
-export default Experience;
+export default CareerTrajectory;

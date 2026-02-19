@@ -8,31 +8,23 @@ import SkillsTicker from './components/SkillsTicker';
 import Footer from './components/Footer';
 import CustomCursor from './components/ui/CustomCursor';
 import BottomNav from './components/ui/BottomNav';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Terminal, Cpu, Layout, Activity } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 gsap.registerPlugin(ScrollToPlugin);
 
 const App: React.FC = () => {
-  const [isDark, setIsDark] = useState(false);
-  const [fontSize, setFontSize] = useState(100); 
-
-  // Apply Font Size Accessibility with requestAnimationFrame for smoothness
-  useEffect(() => {
-    let frameId: number;
-    const updateFontSize = () => {
-      document.documentElement.style.fontSize = `${fontSize}%`;
-    };
-    frameId = requestAnimationFrame(updateFontSize);
-    return () => cancelAnimationFrame(frameId);
-  }, [fontSize]);
+  const [isDark, setIsDark] = useState(true); // Default to dark for 2026 system feel
+  const [systemStatus, setSystemStatus] = useState('OPERATIONAL');
 
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
+      document.body.style.backgroundColor = '#080808';
     } else {
       document.documentElement.classList.remove('dark');
+      document.body.style.backgroundColor = '#f8f8f8';
     }
   }, [isDark]);
 
@@ -42,10 +34,7 @@ const App: React.FC = () => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a');
       
-      if (
-        anchor && 
-        anchor.getAttribute('href')?.startsWith('#')
-      ) {
+      if (anchor && anchor.getAttribute('href')?.startsWith('#')) {
         const href = anchor.getAttribute('href');
         const targetId = href ? href.substring(1) : null;
         
@@ -53,15 +42,12 @@ const App: React.FC = () => {
           const targetElement = document.getElementById(targetId);
           if (targetElement) {
             e.preventDefault();
-            
-            // Dispatch manual-scroll-start so BottomNav can lock state
             window.dispatchEvent(new CustomEvent('manual-scroll-start', { detail: { targetId } }));
 
             gsap.to(window, {
-              duration: 1.4,
+              duration: 1.2,
               scrollTo: { y: targetElement, offsetY: 0, autoKill: false },
-              ease: "power4.inOut",
-              overwrite: true,
+              ease: "expo.inOut",
               onComplete: () => {
                 window.dispatchEvent(new CustomEvent('manual-scroll-end'));
               }
@@ -78,61 +64,56 @@ const App: React.FC = () => {
   const toggleTheme = useCallback(() => setIsDark(prev => !prev), []);
 
   return (
-    <div className="min-h-screen selection:bg-charcoal-900 selection:text-white dark:selection:bg-white/20 dark:selection:text-white overflow-x-hidden relative transition-colors duration-500 font-sans">
+    <div className="min-h-screen selection:bg-blue-500 selection:text-white relative transition-colors duration-500 font-sans system-grid">
       
-      {/* Side Control Panel (Theme & Accessibility) */}
-      <div className="fixed top-6 right-6 z-50 flex flex-col gap-3">
-        {/* Theme Toggle */}
-        <button 
-          onClick={toggleTheme}
-          className="p-3 rounded-full bg-white/40 dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-lg hover:scale-110 transition-transform active:scale-95 group"
-          aria-label="Toggle Theme"
-        >
-          {isDark ? (
-            <Sun className="w-5 h-5 text-yellow-500" />
-          ) : (
-            <Moon className="w-5 h-5 text-charcoal-900" />
-          )}
-        </button>
-
-        {/* Accessibility Font Controls */}
-        <div className="flex flex-col rounded-2xl bg-white/40 dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-lg p-1">
-          <button 
-            onClick={() => setFontSize(90)}
-            className={`w-9 h-9 flex items-center justify-center rounded-xl text-[10px] font-bold transition-all ${fontSize === 90 ? 'bg-charcoal-900 text-white dark:bg-white dark:text-black shadow-inner' : 'hover:bg-black/5 dark:hover:bg-white/5 text-neutral-500'}`}
-            title="Smaller Font"
-          >
-            A-
-          </button>
-          <button 
-            onClick={() => setFontSize(100)}
-            className={`w-9 h-9 flex items-center justify-center rounded-xl text-xs font-bold transition-all ${fontSize === 100 ? 'bg-charcoal-900 text-white dark:bg-white dark:text-black shadow-inner' : 'hover:bg-black/5 dark:hover:bg-white/5 text-neutral-500'}`}
-            title="Default Font"
-          >
-            A
-          </button>
-          <button 
-            onClick={() => setFontSize(115)}
-            className={`w-9 h-9 flex items-center justify-center rounded-xl text-sm font-bold transition-all ${fontSize === 115 ? 'bg-charcoal-900 text-white dark:bg-white dark:text-black shadow-inner' : 'hover:bg-black/5 dark:hover:bg-white/5 text-neutral-500'}`}
-            title="Larger Font"
-          >
-            A+
-          </button>
+      {/* System Header - Fixed */}
+      <header className="fixed top-0 left-0 right-0 z-[60] h-16 border-b border-white/5 dark:border-white/5 backdrop-blur-xl flex items-center justify-between px-6 md:px-12">
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+            <span className="text-[10px] font-mono font-bold tracking-widest uppercase opacity-60">System Status: {systemStatus}</span>
+          </div>
+          <div className="hidden md:flex items-center gap-4 border-l border-white/10 pl-6">
+            <div className="flex items-center gap-2 opacity-40 hover:opacity-100 transition-opacity cursor-default">
+              <Activity size={12} />
+              <span className="text-[9px] font-mono uppercase tracking-tighter">Lat: 22.41ms</span>
+            </div>
+            <div className="flex items-center gap-2 opacity-40 hover:opacity-100 transition-opacity cursor-default">
+              <Cpu size={12} />
+              <span className="text-[9px] font-mono uppercase tracking-tighter">Core: V2.6.0</span>
+            </div>
+          </div>
         </div>
-      </div>
+
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={toggleTheme}
+            className="p-2 rounded-lg hover:bg-white/5 transition-colors group"
+            aria-label="Toggle Theme"
+          >
+            {isDark ? (
+              <Sun className="w-4 h-4 text-neutral-400 group-hover:text-yellow-500 transition-colors" />
+            ) : (
+              <Moon className="w-4 h-4 text-neutral-600 group-hover:text-blue-500 transition-colors" />
+            )}
+          </button>
+          <div className="h-4 w-px bg-white/10" />
+          <div className="flex items-center gap-2">
+            <Terminal size={14} className="text-blue-500" />
+            <span className="text-[10px] font-mono font-bold uppercase tracking-widest">VR_OS</span>
+          </div>
+        </div>
+      </header>
 
       {/* Global Grain/Noise Texture */}
-      <div className="fixed inset-0 opacity-[0.04] pointer-events-none z-50 mix-blend-overlay" 
+      <div className="fixed inset-0 opacity-[0.03] pointer-events-none z-50 mix-blend-overlay" 
            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} 
       />
 
-      {/* Interactive Custom Cursor */}
       <CustomCursor />
-
-      {/* Bottom Floating Navigation */}
       <BottomNav />
 
-      <main className="relative z-10 flex flex-col gap-0">
+      <main className="relative z-10 pt-16">
         <Hero />
         <BentoGrid />
         <Experience />
@@ -140,6 +121,15 @@ const App: React.FC = () => {
         <SkillsTicker />
         <Footer />
       </main>
+
+      {/* System Footer - Fixed */}
+      <div className="fixed bottom-0 left-0 right-0 z-[60] h-8 border-t border-white/5 backdrop-blur-md flex items-center justify-between px-6 text-[8px] font-mono uppercase tracking-widest opacity-40 pointer-events-none">
+        <span>© 2026 VISHAL RATHOD / SYSTEM_ARCHITECT</span>
+        <div className="flex gap-4">
+          <span>LOC: MUMBAI_IN</span>
+          <span>TZ: GMT+5:30</span>
+        </div>
+      </div>
     </div>
   );
 };

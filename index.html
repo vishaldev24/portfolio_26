@@ -8,29 +8,28 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Manrope:wght@400;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              display: ['Manrope', 'sans-serif'],
-              serif: ['Playfair Display', 'serif'],
+              sans: ['Space Grotesk', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+              serif: ['Cormorant Garamond', 'serif'],
             },
             colors: {
               charcoal: {
-                950: '#050505',
-                900: '#0d0d0d', 
-                800: '#121212',
-                700: '#1c1c1c',
+                950: '#020202',
+                900: '#080808', 
+                800: '#111111',
+                700: '#1a1a1a',
               },
-              paper: {
-                50: '#ffffff',
-                100: '#fafafa',
-                200: '#F2F4F7',
-                300: '#E4E7EC',
+              accent: {
+                blue: '#2563eb',
+                green: '#10b981',
+                orange: '#f97316',
               }
             }
           }
@@ -38,60 +37,64 @@
       }
     </script>
     <style>
-      /* Ultra-smooth root font transition with hardware acceleration */
+      /* 2026 System Aesthetic */
       html {
-        /* CRITICAL: Removed scroll-behavior: smooth to prevent conflict with GSAP */
-        transition: font-size 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        will-change: font-size;
+        position: relative;
+        transition: background-color 0.5s ease;
         -webkit-text-size-adjust: 100%;
+        scroll-behavior: auto; /* GSAP handles smoothing */
       }
       body {
         overflow-x: hidden;
         width: 100vw;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-      }
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #555;
-        border-radius: 10px;
-      }
-      .dark ::-webkit-scrollbar-track {
-        background: #0d0d0d;
-      }
-      .dark ::-webkit-scrollbar-thumb {
-        background: #333;
-      }
-      body {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+        background-color: #080808; /* Default dark */
+        color: #ffffff;
       }
       
-      /* Loader Styles */
+      /* Custom Scrollbar - Industrial */
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #020202;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 0;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #2563eb;
+      }
+
+      /* Grid Background */
+      .system-grid {
+        background-image: 
+          linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+      }
+      
+      /* Loader - System Boot */
       #loader {
-          position: fixed; width: 100%; height: 100%; background: #0d0d0d;
+          position: fixed; inset: 0; background: #020202;
           display: flex; flex-direction: column; justify-content: center; align-items: center;
-          z-index: 9999; transition: opacity 0.8s ease;
+          z-index: 9999;
       }
-      .shield-logo {
-          width: 60px; height: 70px; border: 3px solid #4f46e5;
-          border-radius: 5px 5px 30px 30px; position: relative;
-          animation: pulse-3d 2s infinite ease-in-out;
+      .boot-line {
+        width: 200px; height: 1px; background: #333; position: relative; overflow: hidden;
       }
-      .inner-shield {
-          position: absolute; top: 10px; left: 10px; width: 34px; height: 40px;
-          background: #4f46e5; border-radius: 2px 2px 20px 20px; opacity: 0.5;
+      .boot-progress {
+        position: absolute; left: 0; top: 0; height: 100%; background: #2563eb;
+        width: 0%; animation: boot 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
       }
-      @keyframes pulse-3d {
-          0%, 100% { transform: scale(1) rotateY(0deg); opacity: 0.8; }
-          50% { transform: scale(1.1) rotateY(180deg); opacity: 1; box-shadow: 0 0 30px #4f46e5; }
+      @keyframes boot {
+        0% { width: 0%; }
+        100% { width: 100%; }
       }
-      .loading-text { margin-top: 20px; font-size: 10px; letter-spacing: 4px; color: #4f46e5; font-family: 'Manrope', sans-serif; font-weight: 700; }
+      .boot-text { 
+        margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 10px; 
+        color: #666; text-transform: uppercase; letter-spacing: 2px;
+      }
     </style>
   <script type="importmap">
 {
@@ -114,14 +117,14 @@
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-  <body class="bg-paper-200 text-charcoal-900 dark:bg-charcoal-900 dark:text-white transition-colors duration-500">
+  <body class="bg-charcoal-900 text-white relative">
     <div id="loader">
-        <div class="shield-logo">
-            <div class="inner-shield"></div>
+        <div class="boot-line">
+            <div class="boot-progress"></div>
         </div>
-        <p class="loading-text">INITIALIZING PRECISION...</p>
+        <p class="boot-text">System Initialization...</p>
     </div>
-    <div id="root"></div>
+    <div id="root" class="relative"></div>
     <script>
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
