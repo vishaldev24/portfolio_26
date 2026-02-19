@@ -1,9 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react';
+
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { RoundedBox } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Fix for missing types by using explicitly cast constants
 const AmbientLight = 'ambientLight' as any;
 const PointLight = 'pointLight' as any;
 const HemisphereLight = 'hemisphereLight' as any;
@@ -26,66 +26,53 @@ const TechNode = () => {
     if (!meshRef.current || !lightRef.current) return;
 
     if (!reducedMotion) {
-        // 3D Tilt Effect based on mouse position (Spatial UI)
-        // Convert normalized mouse (-1 to 1) to rotation values
-        const targetRotX = (mouse.y * viewport.height) / 20; // Tilt up/down
-        const targetRotY = (mouse.x * viewport.width) / 20;  // Tilt left/right
+        const targetRotX = (mouse.y * viewport.height) / 40; 
+        const targetRotY = (mouse.x * viewport.width) / 40;  
 
-        // Smooth interpolation (lerp)
-        meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, -targetRotX, 0.1);
-        meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetRotY, 0.1);
+        meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, -targetRotX, 0.05);
+        meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetRotY, 0.05);
         
-        // Slight hover float
-        meshRef.current.position.y = Math.sin(state.clock.elapsedTime) * 0.1;
+        meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.05;
     }
 
-    // Light follows mouse for realistic reflection
-    // Map mouse range to 3D space coordinates approx
-    lightRef.current.position.x = mouse.x * 5;
-    lightRef.current.position.y = mouse.y * 5;
+    lightRef.current.position.x = mouse.x * 2;
+    lightRef.current.position.y = mouse.y * 2;
   });
 
   return (
     <>
-      <AmbientLight intensity={0.5} />
-      {/* Reduced intensity slightly as Standard material reflects differently than Physical */}
-      <PointLight ref={lightRef} position={[0, 0, 5]} intensity={40} distance={10} color="#3B82F6" />
-      <HemisphereLight intensity={0.2} groundColor="#000000" />
+      <AmbientLight intensity={0.4} />
+      <PointLight ref={lightRef} position={[0, 0, 4]} intensity={25} distance={8} color="#3B82F6" />
+      <HemisphereLight intensity={0.3} groundColor="#000000" />
 
       <Group ref={meshRef}>
-        {/* Main "Phone" or "Super App" block */}
-        {/* OPTIMIZATION: smoothness reduced from 4 to 2 to save vertex count */}
-        <RoundedBox args={[2.2, 4.5, 0.2]} radius={0.15} smoothness={2}>
-          {/* OPTIMIZATION: Replaced MeshPhysicalMaterial with MeshStandardMaterial for better performance */}
+        <RoundedBox args={[2.2, 4.5, 0.2]} radius={0.12} smoothness={1}>
           <MeshStandardMaterial 
-            color="#111" 
-            roughness={0.2} 
-            metalness={0.8} 
+            color="#080808" 
+            roughness={0.15} 
+            metalness={0.9} 
           />
         </RoundedBox>
 
-        {/* Screen/Interface Element (Abstract) */}
-        <RoundedBox position={[0, 0, 0.11]} args={[2, 4.3, 0.01]} radius={0.1} smoothness={2}>
+        <RoundedBox position={[0, 0, 0.11]} args={[2, 4.3, 0.01]} radius={0.08} smoothness={1}>
           <MeshBasicMaterial color="#000" />
         </RoundedBox>
         
-        {/* "UI" Elements glowing */}
-        <RoundedBox position={[0, 0.5, 0.12]} args={[1.5, 1.5, 0.01]} radius={0.75} smoothness={2}>
+        <RoundedBox position={[0, 0.5, 0.12]} args={[1.4, 1.4, 0.01]} radius={0.7} smoothness={2}>
              <MeshStandardMaterial 
                 color="#3B82F6" 
                 emissive="#3B82F6" 
-                emissiveIntensity={2}
-                roughness={0.4}
+                emissiveIntensity={1.5}
+                roughness={0.3}
              />
         </RoundedBox>
         
-        <RoundedBox position={[0, -1, 0.12]} args={[1.5, 0.2, 0.01]} radius={0.05} smoothness={1}>
-            <MeshStandardMaterial color="#444" roughness={0.5} />
+        <RoundedBox position={[0, -1, 0.12]} args={[1.4, 0.15, 0.01]} radius={0.04} smoothness={1}>
+            <MeshStandardMaterial color="#222" roughness={0.6} />
         </RoundedBox>
-         <RoundedBox position={[0, -1.4, 0.12]} args={[1.5, 0.2, 0.01]} radius={0.05} smoothness={1}>
-            <MeshStandardMaterial color="#444" roughness={0.5} />
+         <RoundedBox position={[0, -1.3, 0.12]} args={[1.4, 0.15, 0.01]} radius={0.04} smoothness={1}>
+            <MeshStandardMaterial color="#222" roughness={0.6} />
         </RoundedBox>
-
       </Group>
     </>
   );
@@ -93,16 +80,21 @@ const TechNode = () => {
 
 const Tarang3D: React.FC = () => {
   return (
-    <div className="w-full h-full absolute inset-0">
+    <div className="w-full h-full absolute inset-0 overflow-hidden pointer-events-none">
       <Canvas 
-        dpr={[1, 1.5]} // OPTIMIZATION: Clamp pixel ratio for mobile performance
-        camera={{ position: [0, 0, 6], fov: 45 }}
-        style={{ background: 'transparent' }}
+        dpr={[1, 1.5]} 
+        camera={{ position: [0, 0, 8], fov: 35 }}
+        style={{ background: 'transparent', width: '100%', height: '100%' }}
         gl={{ 
           alpha: true, 
-          antialias: true, 
+          antialias: false,
           powerPreference: "high-performance",
-          stencil: false // OPTIMIZATION: Disable stencil buffer
+          stencil: false,
+          depth: true,
+          preserveDrawingBuffer: false
+        }}
+        onCreated={({ gl }) => {
+            gl.setClearColor(0x000000, 0);
         }}
       >
         <TechNode />

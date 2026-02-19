@@ -1,11 +1,10 @@
 import React from 'react';
-import { motion, HTMLMotionProps } from 'framer-motion';
+import { motion } from 'framer-motion';
 
-interface GlassCardProps extends HTMLMotionProps<"div"> {
-  children: React.ReactNode;
-  className?: string;
+type GlassCardProps = React.ComponentProps<typeof motion.div> & {
   hoverEffect?: boolean;
-}
+  children?: React.ReactNode;
+};
 
 const GlassCard: React.FC<GlassCardProps> = ({ children, className = "", hoverEffect = false, ...props }) => {
   return (
