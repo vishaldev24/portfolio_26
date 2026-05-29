@@ -23,19 +23,15 @@ const Magnetic: React.FC<MagneticProps> = ({ children, strength = 0.5 }) => {
   };
 
   return (
-    <div
+    <motion.div
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ position: 'relative' }}
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
     >
-      <motion.div
-        animate={{ x: position.x, y: position.y }}
-        transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-      >
-        {children}
-      </motion.div>
-    </div>
+      {children}
+    </motion.div>
   );
 };
 

@@ -162,10 +162,35 @@ const BentoGrid: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [selectedProject, setSelectedProject] = useState<ProjectDetails | null>(null);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1, 
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  };
+
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-        // Removed conflicting GSAP animation for .tarang-card-wrapper 
-        // as it is already handled by Framer Motion's whileInView
+        gsap.from(".tarang-card-wrapper", {
+            scrollTrigger: {
+                trigger: ".tarang-card-wrapper",
+                start: "top 95%",
+                toggleActions: "play none none reverse",
+                // Ensure the animation is as stable as possible
+                fastScrollEnd: true,
+                preventOverlaps: true,
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out"
+        });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -210,11 +235,10 @@ const BentoGrid: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="tarang-card-wrapper md:col-span-2 block group relative overflow-visible cursor-pointer min-h-[450px]"
-            style={{ willChange: "opacity, transform" }}
           >
             <TiltCard className="tarang-card h-full group relative overflow-visible"> 
               {/* Force the container to be solid to prevent context blanking */}
-              <div className="absolute inset-0 z-0 pointer-events-none">
+              <div className="absolute inset-0 z-0 pointer-events-none transform-gpu">
                  <Tarang3D />
                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/20 to-transparent pointer-events-none" />
               </div>
@@ -222,7 +246,6 @@ const BentoGrid: React.FC = () => {
               <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12 text-white pointer-events-none">
                 <div className="transform translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 border border-white/20 rounded-full text-[10px] md:text-xs font-mono uppercase tracking-wider backdrop-blur-md bg-black/40">Super-App</span>
                     <ArrowUpRight className="w-6 h-6 md:w-8 md:h-8 opacity-0 md:group-hover:opacity-100 transition-all duration-300" />
                   </div>
                   <h3 className="font-serif text-4xl md:text-6xl font-bold mb-2 drop-shadow-2xl">Tarang</h3>
@@ -232,7 +255,7 @@ const BentoGrid: React.FC = () => {
                   
                   <div className="flex items-center gap-4 pointer-events-auto">
                     <motion.a 
-                        href="https://ai.studio/apps/drive/11J5h3R5QZLpJ5j6clQtCT0C5a4ejO2cn?fullscreenApplet=true"
+                        href="https://revamp-shush-22720965.figma.site/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="demo-button inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-blue-600 text-white font-bold text-[10px] md:text-xs tracking-wide shadow-[0_0_20px_rgba(37,99,235,0.4)] border border-blue-400/30"
@@ -240,7 +263,17 @@ const BentoGrid: React.FC = () => {
                         whileTap={{ scale: 0.95 }}
                     >
                         <Play size={10} className="fill-current" />
-                        Live App Demo
+                        Live App
+                    </motion.a>
+                    <motion.a 
+                        href="https://tarang-case-study.vercel.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-white/10 text-white font-bold text-[10px] md:text-xs tracking-wide border border-white/20"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        View Case Study
                     </motion.a>
                   </div>
                 </div>
@@ -248,11 +281,16 @@ const BentoGrid: React.FC = () => {
             </TiltCard>
           </motion.div>
 
-          <div className="h-[400px] md:h-full">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true }} 
+            variants={containerVariants} 
+            className="h-[400px] md:h-full"
+          >
             <ParallaxCard 
               index={1}
-              className="secondary-card md:col-span-1 group cursor-pointer bg-white dark:bg-white/5 shadow-sm"
-              onClick={() => setSelectedProject(projectData.aurakshan)}
+              className="secondary-card md:col-span-1 group cursor-pointer bg-white dark:bg-white/5 aurakshan-card active:bg-neutral-200 dark:active:bg-white/15 transition-colors duration-150"
               bgContent={
                 <>
                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-transparent" />
@@ -264,21 +302,42 @@ const BentoGrid: React.FC = () => {
                 </>
               }
             >
-               <div className="relative z-10 h-full flex flex-col justify-between p-6 md:p-8 pointer-events-none">
-                 <div className="self-end">
+               <motion.div variants={itemVariants} className="relative z-10 h-full flex flex-col justify-between p-6 md:p-8">
+                 <motion.div variants={itemVariants} className="self-end">
                   <Shield className="w-5 h-5 md:w-6 md:h-6 text-indigo-500 group-hover:scale-110 transition-transform" />
-                 </div>
-                 <div>
+                 </motion.div>
+                 <motion.div variants={itemVariants} className="pointer-events-none">
                    <h4 className="font-serif text-xl md:text-2xl font-bold mb-2 text-charcoal-900 dark:text-white">Aurakshan</h4>
                    <p className="text-neutral-500 dark:text-neutral-400 text-[10px] font-mono mb-2 md:mb-3 uppercase tracking-wider">Safety & Response</p>
                    <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-4 md:mb-6 leading-relaxed">
                      A safety ecosystem combining physical response and digital identity protection (Dristi).
                    </p>
-                   <span className="text-blue-600 dark:text-blue-400 font-mono text-[10px] font-bold tracking-widest uppercase transition-colors group-hover:text-indigo-500">[ View Case Study → ]</span>
-                 </div>
-               </div>
+                 </motion.div>
+                 <motion.div variants={itemVariants} className="flex items-center gap-3 pointer-events-auto">
+                    <motion.a 
+                        href="https://aurakshan-cs-safe.lovable.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-600 text-white font-bold text-[10px] md:text-xs tracking-wide shadow-[0_0_20px_rgba(79,70,229,0.4)] border border-indigo-400/30"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        View Case Study
+                    </motion.a>
+                    <motion.a 
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/90 text-white dark:bg-white/10 dark:text-white font-bold text-[10px] md:text-xs tracking-wide border border-neutral-800 dark:border-white/20"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        Live App
+                    </motion.a>
+                 </motion.div>
+               </motion.div>
             </ParallaxCard>
-          </div>
+          </motion.div>
 
           <div className="h-[400px] md:h-full">
             <ParallaxCard 
@@ -295,7 +354,10 @@ const BentoGrid: React.FC = () => {
                  </div>
                  <div>
                    <h4 className="font-serif text-xl md:text-2xl font-bold mb-2 text-charcoal-900 dark:text-white">Vitalis</h4>
-                   <p className="text-neutral-500 dark:text-neutral-400 text-[10px] font-mono mb-2 md:mb-3 uppercase tracking-wider">Health Tech</p>
+                   <div className="flex items-center justify-between mb-2 md:mb-3">
+                     <p className="text-neutral-500 dark:text-neutral-400 text-[10px] font-mono uppercase tracking-wider">Health Tech</p>
+                     <span className="px-3 py-1 bg-amber-500/10 text-amber-600 rounded-full text-[9px] font-mono uppercase">Adding Soon</span>
+                   </div>
                    <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-4 md:mb-6 leading-relaxed">
                      Data-driven health monitoring designed for proactive wellness and predictive telemetry.
                    </p>
