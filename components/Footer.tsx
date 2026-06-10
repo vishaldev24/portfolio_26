@@ -1,12 +1,13 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Linkedin, FileText, Github, Send, Check, Loader2, AlertCircle } from 'lucide-react';
+import { Linkedin, FileText, Github, Send, Check, Loader2, AlertCircle, Eye, EyeOff } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const [showPhone, setShowPhone] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -230,6 +231,22 @@ const Footer: React.FC = () => {
         <div className="flex flex-col gap-2 mb-8 md:mb-0">
           <span className="text-neutral-500 text-sm font-mono">© 2026 Vishal Rathod</span>
           <span className="text-neutral-500 dark:text-neutral-600 text-xs">Designed & Built with React + Framer Motion</span>
+          {/* New Contact Details */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-2 font-mono text-sm">
+            <span className="text-neutral-700 dark:text-neutral-300">vishaldev2401@gmail.com</span>
+            <div className="flex items-center gap-2">
+              <span className={`text-neutral-700 dark:text-neutral-300 ${!showPhone ? 'blur-[4px]' : ''}`}>
+                6303204956
+              </span>
+              <button 
+                onClick={() => setShowPhone(!showPhone)} 
+                className="text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white transition-colors"
+                aria-label={showPhone ? "Hide phone number" : "Show phone number"}
+              >
+                {showPhone ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
+            </div>
+          </div>
         </div>
 
         <div className="flex gap-4 md:gap-8 flex-wrap justify-end">

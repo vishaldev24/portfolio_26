@@ -11,7 +11,8 @@ import {
   Infinity,
   ArrowRight,
   X,
-  Award
+  Award,
+  Search
 } from 'lucide-react';
 
 const capabilities = [
@@ -61,12 +62,17 @@ const capabilities = [
 const techStack = [
   {
     title: "Design",
-    tools: ["Figma (Components, Variants, Auto-layout, Prototyping)", "FigJam", "Framer", "Spline (3D Interaction Basics)"],
+    tools: ["Figma (Components, Variants, Auto-layout, Prototyping)", "FigJam", "Spline (3D Interaction Basics)", "Lovable (Rapid Prototyping & Deployment)"],
     icon: <Figma size={18} />
   },
   {
+    title: "User Research & Testing",
+    tools: ["Contextual Interviews", "Empathy Mapping", "Usability Testing (Maze)", "Competitive Audit"],
+    icon: <Search size={18} />
+  },
+  {
     title: "AI Tools",
-    tools: ["Figma AI", "Claude (Structured Ideation & System Drafting)", "LLM-assisted Research & Copy Refinement"],
+    tools: ["Figma AI", "Claude (Research Synthesis, Design Critique, Copy Refinement)", "ChatGPT", "Google AI Studio", "Gemini", "LLM-assisted Research & Copy Refinement"],
     icon: <Zap size={18} />
   },
   {
@@ -76,7 +82,7 @@ const techStack = [
   },
   {
     title: "Collaboration & Deployment",
-    tools: ["Notion", "Jira", "Git", "GitHub", "Vercel"],
+    tools: ["Notion", "Jira", "Git", "GitHub", "Vercel", "Figma Sites"],
     icon: <Infinity size={18} />
   }
 ];

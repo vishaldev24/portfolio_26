@@ -177,20 +177,6 @@ const BentoGrid: React.FC = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-        gsap.from(".tarang-card-wrapper", {
-            scrollTrigger: {
-                trigger: ".tarang-card-wrapper",
-                start: "top 95%",
-                toggleActions: "play none none reverse",
-                // Ensure the animation is as stable as possible
-                fastScrollEnd: true,
-                preventOverlaps: true,
-            },
-            y: 40,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power2.out"
-        });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
