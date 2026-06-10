@@ -325,7 +325,7 @@ const BentoGrid: React.FC = () => {
                         View Case Study
                     </motion.a>
                     <motion.a 
-                        href="#"
+                        href="https://memory-vary-27909173.figma.site/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/90 text-white dark:bg-white/10 dark:text-white font-bold text-[10px] md:text-xs tracking-wide border border-neutral-800 dark:border-white/20"
