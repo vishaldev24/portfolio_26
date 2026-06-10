@@ -230,6 +230,9 @@ const BentoGrid: React.FC = () => {
               </div>
               
               <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12 text-white pointer-events-none">
+                <div className="absolute top-6 left-6 z-20">
+                    <img src="https://i.postimg.cc/8kJV8jhv/Adobe-Express-file-1.png" alt="Tarang Logo" className="w-[80px] h-[50px]" />
+                </div>
                 <div className="transform translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
                   <div className="flex items-center justify-between mb-4">
                     <ArrowUpRight className="w-6 h-6 md:w-8 md:h-8 opacity-0 md:group-hover:opacity-100 transition-all duration-300" />
@@ -281,9 +284,9 @@ const BentoGrid: React.FC = () => {
                 <>
                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-transparent" />
                    <img 
-                    src="https://images.unsplash.com/photo-1557597774-9d2739f85a76?auto=format&fit=crop&q=80&w=600&h=800&blur=10" 
+                    src="https://i.postimg.cc/t4Vbh7g7/Whats-App-Image-2026-02-19-at-4-19-43-PM.jpg" 
                     alt="Aurakshan Safety" 
-                    className="w-full h-full object-cover opacity-20 dark:opacity-40" 
+                    className="w-full h-full object-cover opacity-20 dark:opacity-40 group-hover:opacity-100 transition-opacity duration-500" 
                   />
                 </>
               }
@@ -295,9 +298,11 @@ const BentoGrid: React.FC = () => {
                  <motion.div variants={itemVariants} className="pointer-events-none">
                    <h4 className="font-serif text-xl md:text-2xl font-bold mb-2 text-charcoal-900 dark:text-white">Aurakshan</h4>
                    <p className="text-neutral-500 dark:text-neutral-400 text-[10px] font-mono mb-2 md:mb-3 uppercase tracking-wider">Safety & Response</p>
-                   <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-4 md:mb-6 leading-relaxed">
-                     A safety ecosystem combining physical response and digital identity protection (Dristi).
-                   </p>
+                   <div className="overflow-hidden">
+                     <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-4 md:mb-6 leading-relaxed opacity-100 group-hover:opacity-0 translate-y-0 group-hover:-translate-y-4 transition-all duration-500">
+                       A safety ecosystem combining physical response and digital identity protection (Dristi).
+                     </p>
+                   </div>
                  </motion.div>
                  <motion.div variants={itemVariants} className="flex items-center gap-3 pointer-events-auto">
                     <motion.a 
