@@ -3,7 +3,7 @@ import React, { useRef, useLayoutEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import GlassCard from './ui/GlassCard';
 import Tarang3D from './ui/Tarang3D';
-import { ArrowUpRight, Shield, Activity, X, Play, HeartPulse } from 'lucide-react';
+import { ArrowUpRight, Shield, Activity, X, Play, HeartPulse, Wrench } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -31,6 +31,13 @@ const projectData: Record<string, ProjectDetails> = {
     category: 'Health Tech',
     description: 'A data-driven health monitoring platform designed for proactive wellness. Integrates wearable telemetry with predictive AI to detect early physiological shifts, ensuring a "zero-failure" approach to personal health management.',
     technologies: ['React', 'Next.js', 'AI/ML', 'Bluetooth Low Energy']
+  },
+  repairo: {
+    id: 'repairo',
+    title: 'Repairo',
+    category: 'Service Management',
+    description: 'Repairo is a streamlined service management platform for repair and maintenance workflows.',
+    technologies: ['React', 'Node.js', 'PostgreSQL']
   }
 };
 
@@ -330,33 +337,92 @@ const BentoGrid: React.FC = () => {
             </ParallaxCard>
           </motion.div>
 
-          <div className="h-[400px] md:h-full">
-            <ParallaxCard 
-              index={2}
-              className="secondary-card md:col-span-1 group cursor-pointer shadow-sm bg-white dark:bg-white/5"
-              onClick={() => setSelectedProject(projectData.vitalis)}
-              bgContent={
-                 <div className="absolute inset-0 bg-gradient-to-bl from-rose-500/10 to-transparent" />
-              }
-            >
-              <div className="relative z-10 h-full flex flex-col justify-between p-6 md:p-8 pointer-events-none">
-                 <div className="self-end">
-                  <HeartPulse className="w-5 h-5 md:w-6 md:h-6 text-rose-500 group-hover:scale-110 transition-transform" />
-                 </div>
-                 <div>
-                   <h4 className="font-serif text-xl md:text-2xl font-bold mb-2 text-charcoal-900 dark:text-white">Vitalis</h4>
-                   <div className="flex items-center justify-between mb-2 md:mb-3">
-                     <p className="text-neutral-500 dark:text-neutral-400 text-[10px] font-mono uppercase tracking-wider">Health Tech</p>
-                     <span className="px-3 py-1 bg-amber-500/10 text-amber-600 rounded-full text-[9px] font-mono uppercase">Adding Soon</span>
+            <div className="h-[400px] md:h-full">
+              <ParallaxCard 
+                index={2}
+                className="secondary-card md:col-span-1 group cursor-pointer shadow-sm bg-white dark:bg-white/5"
+                onClick={() => setSelectedProject(projectData.vitalis)}
+                bgContent={
+                   <div className="absolute inset-0 bg-gradient-to-bl from-rose-500/10 to-transparent" />
+                }
+              >
+                <div className="relative z-10 h-full flex flex-col justify-between p-6 md:p-8 pointer-events-none">
+                   <div className="self-end">
+                    <HeartPulse className="w-5 h-5 md:w-6 md:h-6 text-rose-500 group-hover:scale-110 transition-transform" />
                    </div>
-                   <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-4 md:mb-6 leading-relaxed">
-                     Data-driven health monitoring designed for proactive wellness and predictive telemetry.
-                   </p>
-                   <span className="text-rose-600 dark:text-rose-400 font-mono text-[10px] font-bold tracking-widest uppercase">[ View Case Study → ]</span>
+                   <div>
+                     <h4 className="font-serif text-xl md:text-2xl font-bold mb-2 text-charcoal-900 dark:text-white">Vitalis</h4>
+                     <div className="flex items-center justify-between mb-2 md:mb-3">
+                       <p className="text-neutral-500 dark:text-neutral-400 text-[10px] font-mono uppercase tracking-wider">Health Tech</p>
+                       <span className="px-3 py-1 bg-amber-500/10 text-amber-600 rounded-full text-[9px] font-mono uppercase">Adding Soon</span>
+                     </div>
+                     <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-4 md:mb-6 leading-relaxed">
+                       Data-driven health monitoring designed for proactive wellness and predictive telemetry.
+                     </p>
+                     <span className="text-rose-600 dark:text-rose-400 font-mono text-[10px] font-bold tracking-widest uppercase">[ View Case Study → ]</span>
+                   </div>
                  </div>
-               </div>
-            </ParallaxCard>
-          </div>
+              </ParallaxCard>
+            </div>
+
+            <motion.div 
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true }} 
+              variants={containerVariants} 
+              className="h-[400px] md:h-full"
+            >
+              <ParallaxCard 
+                index={3}
+                className="secondary-card md:col-span-1 group cursor-pointer bg-white dark:bg-white/5 repairo-card active:bg-neutral-200 dark:active:bg-white/15 transition-colors duration-150"
+                bgContent={
+                  <>
+                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent" />
+                     {/* Placeholder for Repairo */}
+                     <div className="w-full h-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center opacity-20 dark:opacity-40">
+                        <span className="text-neutral-500 font-mono text-sm">Repairo</span>
+                     </div>
+                  </>
+                }
+              >
+                 <motion.div variants={itemVariants} className="relative z-10 h-full flex flex-col justify-between p-6 md:p-8">
+                   <motion.div variants={itemVariants} className="self-end">
+                    <Wrench className="w-5 h-5 md:w-6 md:h-6 text-blue-500 group-hover:scale-110 transition-transform" />
+                   </motion.div>
+                   <motion.div variants={itemVariants} className="pointer-events-none">
+                     <h4 className="font-serif text-xl md:text-2xl font-bold mb-2 text-charcoal-900 dark:text-white">Repairo</h4>
+                     <p className="text-neutral-500 dark:text-neutral-400 text-[10px] font-mono mb-2 md:mb-3 uppercase tracking-wider">Service Management</p>
+                     <div className="overflow-hidden">
+                       <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-4 md:mb-6 leading-relaxed opacity-100 group-hover:opacity-0 translate-y-0 group-hover:-translate-y-4 transition-all duration-500">
+                         Repairo is a streamlined service management platform for repair and maintenance workflows.
+                       </p>
+                     </div>
+                   </motion.div>
+                   <motion.div variants={itemVariants} className="flex items-center gap-3 pointer-events-auto">
+                      <motion.a 
+                          href="#"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white font-bold text-[10px] md:text-xs tracking-wide shadow-[0_0_20px_rgba(37,99,235,0.4)] border border-blue-400/30"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                      >
+                          View Case Study
+                      </motion.a>
+                      <motion.a 
+                          href="#"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/90 text-white dark:bg-white/10 dark:text-white font-bold text-[10px] md:text-xs tracking-wide border border-neutral-800 dark:border-white/20"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                      >
+                          Live App
+                      </motion.a>
+                   </motion.div>
+                 </motion.div>
+              </ParallaxCard>
+            </motion.div>
 
         </div>
       </div>
