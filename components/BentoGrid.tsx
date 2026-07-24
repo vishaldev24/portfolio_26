@@ -337,34 +337,6 @@ const BentoGrid: React.FC = () => {
             </ParallaxCard>
           </motion.div>
 
-            <div className="h-[400px] md:h-full">
-              <ParallaxCard 
-                index={2}
-                className="secondary-card md:col-span-1 group cursor-pointer shadow-sm bg-white dark:bg-white/5"
-                onClick={() => setSelectedProject(projectData.vitalis)}
-                bgContent={
-                   <div className="absolute inset-0 bg-gradient-to-bl from-rose-500/10 to-transparent" />
-                }
-              >
-                <div className="relative z-10 h-full flex flex-col justify-between p-6 md:p-8 pointer-events-none">
-                   <div className="self-end">
-                    <HeartPulse className="w-5 h-5 md:w-6 md:h-6 text-rose-500 group-hover:scale-110 transition-transform" />
-                   </div>
-                   <div>
-                     <h4 className="font-serif text-xl md:text-2xl font-bold mb-2 text-charcoal-900 dark:text-white">Vitalis</h4>
-                     <div className="flex items-center justify-between mb-2 md:mb-3">
-                       <p className="text-neutral-500 dark:text-neutral-400 text-[10px] font-mono uppercase tracking-wider">Health Tech</p>
-                       <span className="px-3 py-1 bg-amber-500/10 text-amber-600 rounded-full text-[9px] font-mono uppercase">Adding Soon</span>
-                     </div>
-                     <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-4 md:mb-6 leading-relaxed">
-                       Data-driven health monitoring designed for proactive wellness and predictive telemetry.
-                     </p>
-                     <span className="text-rose-600 dark:text-rose-400 font-mono text-[10px] font-bold tracking-widest uppercase">[ View Case Study → ]</span>
-                   </div>
-                 </div>
-              </ParallaxCard>
-            </div>
-
             <motion.div 
               initial="hidden" 
               whileInView="visible" 
@@ -373,7 +345,7 @@ const BentoGrid: React.FC = () => {
               className="h-[400px] md:h-full"
             >
               <ParallaxCard 
-                index={3}
+                index={2}
                 className="secondary-card md:col-span-1 group cursor-pointer bg-white dark:bg-white/5 repairo-card active:bg-neutral-200 dark:active:bg-white/15 transition-colors duration-150"
                 bgContent={
                   <>
@@ -400,7 +372,7 @@ const BentoGrid: React.FC = () => {
                    </motion.div>
                    <motion.div variants={itemVariants} className="flex items-center gap-3 pointer-events-auto">
                       <motion.a 
-                          href="#"
+                          href="https://repairo-case-showcase.lovable.app"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white font-bold text-[10px] md:text-xs tracking-wide shadow-[0_0_20px_rgba(37,99,235,0.4)] border border-blue-400/30"
@@ -410,7 +382,7 @@ const BentoGrid: React.FC = () => {
                           View Case Study
                       </motion.a>
                       <motion.a 
-                          href="#"
+                          href="https://action-flee-78878932.figma.site/"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/90 text-white dark:bg-white/10 dark:text-white font-bold text-[10px] md:text-xs tracking-wide border border-neutral-800 dark:border-white/20"
@@ -423,6 +395,34 @@ const BentoGrid: React.FC = () => {
                  </motion.div>
               </ParallaxCard>
             </motion.div>
+
+            <div className="h-[400px] md:h-full">
+              <ParallaxCard 
+                index={3}
+                className="secondary-card md:col-span-1 group cursor-pointer shadow-sm bg-white dark:bg-white/5"
+                onClick={() => setSelectedProject(projectData.vitalis)}
+                bgContent={
+                   <div className="absolute inset-0 bg-gradient-to-bl from-rose-500/10 to-transparent" />
+                }
+              >
+                <div className="relative z-10 h-full flex flex-col justify-between p-6 md:p-8 pointer-events-none">
+                   <div className="self-end">
+                    <HeartPulse className="w-5 h-5 md:w-6 md:h-6 text-rose-500 group-hover:scale-110 transition-transform" />
+                   </div>
+                   <div>
+                     <h4 className="font-serif text-xl md:text-2xl font-bold mb-2 text-charcoal-900 dark:text-white">Vitalis</h4>
+                     <div className="flex items-center justify-between mb-2 md:mb-3">
+                       <p className="text-neutral-500 dark:text-neutral-400 text-[10px] font-mono uppercase tracking-wider">Health Tech</p>
+                       <span className="px-3 py-1 bg-amber-500/10 text-amber-600 rounded-full text-[9px] font-mono uppercase">Adding Soon</span>
+                     </div>
+                     <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-4 md:mb-6 leading-relaxed">
+                       Data-driven health monitoring designed for proactive wellness and predictive telemetry.
+                     </p>
+                     <span className="text-rose-600 dark:text-rose-400 font-mono text-[10px] font-bold tracking-widest uppercase">[ View Case Study → ]</span>
+                   </div>
+                 </div>
+              </ParallaxCard>
+            </div>
 
         </div>
       </div>
