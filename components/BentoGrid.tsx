@@ -349,11 +349,12 @@ const BentoGrid: React.FC = () => {
                 className="secondary-card md:col-span-1 group cursor-pointer bg-white dark:bg-white/5 repairo-card active:bg-neutral-200 dark:active:bg-white/15 transition-colors duration-150"
                 bgContent={
                   <>
-                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent" />
-                     {/* Placeholder for Repairo */}
-                     <div className="w-full h-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center opacity-20 dark:opacity-40">
-                        <span className="text-neutral-500 font-mono text-sm">Repairo</span>
-                     </div>
+                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent" />
+                   <img 
+                      src="https://i.postimg.cc/43QfX9P5/Whats-App-Image-2026-07-06-at-12-37-08-PM.jpg" 
+                      alt="Repairo Service" 
+                      className="w-full h-full object-cover opacity-20 dark:opacity-40 group-hover:opacity-100 transition-opacity duration-500" 
+                   />
                   </>
                 }
               >
@@ -365,7 +366,7 @@ const BentoGrid: React.FC = () => {
                      <h4 className="font-serif text-xl md:text-2xl font-bold mb-2 text-charcoal-900 dark:text-white">Repairo</h4>
                      <p className="text-neutral-500 dark:text-neutral-400 text-[10px] font-mono mb-2 md:mb-3 uppercase tracking-wider">Service Management</p>
                      <div className="overflow-hidden">
-                       <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-4 md:mb-6 leading-relaxed opacity-100 group-hover:opacity-0 translate-y-0 group-hover:-translate-y-4 transition-all duration-500">
+                       <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-4 md:mb-6 leading-relaxed">
                          Repairo is a streamlined service management platform for repair and maintenance workflows.
                        </p>
                      </div>
