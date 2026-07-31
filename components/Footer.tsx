@@ -252,7 +252,7 @@ const Footer: React.FC = () => {
         <div className="flex gap-4 md:gap-8 flex-wrap justify-end">
           <SocialLink href="https://www.linkedin.com/in/vishal-rathod-productdesigner" label="LinkedIn" icon={<Linkedin size={20} />} />
           <SocialLink href="https://github.com/vishalrathod" label="GitHub" icon={<Github size={20} />} />
-          <SocialLink href="/resume.pdf" label="Resume" icon={<FileText size={20} />} />
+          <SocialLink href="https://drive.google.com/file/d/1YKtTFi-2w61LSSzdH4EVSuR0LEP0sjSZ/view?usp=drive_link" label="Resume" icon={<FileText size={20} />} />
           <SocialLink href="mailto:hello@vishalrathod.design" label="Contact" icon={<Send size={20} />} />
         </div>
       </motion.div>
