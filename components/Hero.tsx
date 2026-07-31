@@ -160,7 +160,7 @@ const Hero: React.FC = () => {
            </p>
         </div>
 
-        <div className="hero-cta pb-8 md:pb-0">
+        <div className="hero-cta pb-8 md:pb-0 flex items-center justify-center gap-4">
             <Magnetic strength={0.2}>
               <a 
                 href="#work"
@@ -168,6 +168,16 @@ const Hero: React.FC = () => {
               >
                 Selected Works
                 <ArrowDownRight className="w-5 h-5 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform" />
+              </a>
+            </Magnetic>
+            <Magnetic strength={0.2}>
+              <a 
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-transparent text-charcoal-900 dark:text-white rounded-full text-base md:text-lg font-bold tracking-tight hover:scale-105 transition-all duration-300 shadow-none border border-neutral-300 dark:border-white/20"
+              >
+                View Resume
               </a>
             </Magnetic>
         </div>
