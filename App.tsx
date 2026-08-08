@@ -4,10 +4,9 @@ import Hero from './components/Hero';
 import WhyHireMe from './components/WhyHireMe';
 import BentoGrid from './components/BentoGrid';
 import MyProcess from './components/MyProcess';
+import ContactCTA from './components/ContactCTA';
 import Experience from './components/Experience';
 import About from './components/About';
-import SkillsTicker from './components/SkillsTicker';
-import Footer from './components/Footer';
 import CustomCursor from './components/ui/CustomCursor';
 import BottomNav from './components/ui/BottomNav';
 import { Sun, Moon } from 'lucide-react';
@@ -141,8 +140,7 @@ const App: React.FC = () => {
         <MyProcess />
         <Experience />
         <About />
-        <SkillsTicker />
-        <Footer />
+        <ContactCTA />
       </main>
     </div>
   );
