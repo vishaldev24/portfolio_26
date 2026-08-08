@@ -134,17 +134,17 @@ const AboutMonitor: React.FC = () => {
 
                 <div className="space-y-10">
                     <motion.p variants={itemVariants} className="text-xl md:text-2xl font-medium leading-relaxed text-charcoal-900 dark:text-white">
-                        I’m a <span className="text-blue-600 dark:text-blue-400">Product Designer (UI/UX)</span> focused on building structured, scalable digital products. My work combines product thinking, interaction design, and implementation awareness to create experiences that are clear, efficient, and maintainable.
+                        Most junior designers come from bootcamps. I come from a manufacturing floor where a single defect meant a returned product and a lost customer.
                     </motion.p>
 
                     <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-black/5 dark:border-white/5">
                         <div className="space-y-4">
                             <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
                                 <Terminal size={16} />
-                                <h4 className="font-mono text-[11px] font-bold uppercase tracking-widest">Core Narrative</h4>
+                                <h4 className="font-mono text-[11px] font-bold uppercase tracking-widest">QA Foundation</h4>
                             </div>
                             <p className="text-sm md:text-base font-light leading-relaxed text-neutral-600 dark:text-neutral-400">
-                                Before transitioning into design, I spent over two and a half years in high-scale manufacturing quality operations, leading teams and working within intensely metric-driven systems.
+                                For 3 years, I led QA operations at Radiant Appliances & Electronics, supervising inspectors for global brands — Samsung, OnePlus, Nokia, Itel, Panasonic, and Motorola. I improved defect detection rates through structured testing workflows and trained teams on customer empathy.
                             </p>
                         </div>
                         <div className="space-y-4">
@@ -153,13 +153,15 @@ const AboutMonitor: React.FC = () => {
                                 <h4 className="font-mono text-[11px] font-bold uppercase tracking-widest">System Ethos</h4>
                             </div>
                             <p className="text-sm md:text-base font-light leading-relaxed text-neutral-600 dark:text-neutral-400">
-                                That environment shaped my systems-first mindset — prioritizing clarity, measurable outcomes, and operational discipline in every digital interface I build.
+                                That zero-error mindset and systems thinking are now the foundation of how I approach product design. I don't just design the happy path. I design for edge cases, error states, accessibility gaps, and the users everyone else forgets.
                             </p>
                         </div>
                     </motion.div>
 
-                    <motion.p variants={itemVariants} className="text-base md:text-lg font-light leading-relaxed text-neutral-600 dark:text-neutral-400 italic border-l-2 border-blue-500/30 pl-6">
-                        I value disciplined execution, adaptability, and delivering work that stands on its own merit. My primary focus is applying structured thinking to user experiences within real-world constraints.
+                    <motion.p variants={itemVariants} className="text-base md:text-lg font-light leading-relaxed text-neutral-600 dark:text-neutral-400 border-l-2 border-blue-500/30 pl-6">
+                        In 2025, I completed the Google UX Design Professional Certificate and have since built three production-level products from scratch — each with complete design systems, documented research, working prototypes, and dev-ready handoffs.
+
+                        I'm not looking for a job where I push pixels. I'm looking for a team where I can own features, research real users, and build products that work for everyone.
                     </motion.p>
                 </div>
 
