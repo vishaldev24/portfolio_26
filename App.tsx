@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import WhyHireMe from './components/WhyHireMe';
 import BentoGrid from './components/BentoGrid';
 import MyProcess from './components/MyProcess';
+import SkillsGrid from './components/SkillsGrid';
 import ContactCTA from './components/ContactCTA';
 import Experience from './components/Experience';
 import About from './components/About';
@@ -138,6 +139,7 @@ const App: React.FC = () => {
         <WhyHireMe />
         <BentoGrid />
         <MyProcess />
+        <SkillsGrid />
         <Experience />
         <About />
         <ContactCTA />

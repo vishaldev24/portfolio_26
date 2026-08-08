@@ -135,7 +135,7 @@ const TerminalView = () => (
 
         {/* Live Log */}
         <div className="flex-grow bg-paper-200/50 dark:bg-black/40 rounded-lg p-3 border border-black/5 dark:border-white/5 space-y-1 relative overflow-hidden font-mono">
-            <LogLine text="> INIT_QA_PROTOCOL..." delay={0.5} />
+            <LogLine text="> Design Process..." delay={0.5} />
             <LogLine text="> TRACE_USER_FLOWS..." delay={1.5} />
             <LogLine text="> DETECT_EDGE_CASES..." delay={2.5} color="text-yellow-600 dark:text-yellow-500" />
             <LogLine text="> REFACTOR_COMPONENT_API..." delay={3.5} />
@@ -249,7 +249,7 @@ const SystemDiagnostics: React.FC = () => {
                 {view === 'terminal' ? (
                      <>
                         <Terminal className="w-3 h-3 text-neutral-400" />
-                        <span className="text-[10px] font-mono text-neutral-500 dark:text-neutral-400 tracking-widest uppercase">sys_diagnostic.sh</span>
+                        <span className="text-[10px] font-mono text-neutral-500 dark:text-neutral-400 tracking-widest uppercase">Systems Thinking</span>
                      </>
                 ) : (
                     <>

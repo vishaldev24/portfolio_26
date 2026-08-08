@@ -171,7 +171,7 @@ const AboutMonitor: React.FC = () => {
                         </div>
                         <span className="text-[9px] font-mono tracking-widest uppercase text-neutral-500">Root Cause Strategy</span>
                     </div>
-                    <span className="text-[9px] font-mono tracking-widest uppercase text-neutral-500">v_2.0.26_STABLE</span>
+                    <span className="text-[9px] font-mono tracking-widest uppercase text-neutral-500">Version 2025</span>
                 </motion.div>
             </div>
           </div>
