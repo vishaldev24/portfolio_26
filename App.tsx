@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Hero from './components/Hero';
 import WhyHireMe from './components/WhyHireMe';
 import BentoGrid from './components/BentoGrid';
+import MyProcess from './components/MyProcess';
 import Experience from './components/Experience';
 import About from './components/About';
 import SkillsTicker from './components/SkillsTicker';
@@ -137,6 +138,7 @@ const App: React.FC = () => {
         <Hero />
         <WhyHireMe />
         <BentoGrid />
+        <MyProcess />
         <Experience />
         <About />
         <SkillsTicker />
