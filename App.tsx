@@ -5,6 +5,7 @@ import WhyHireMe from './components/WhyHireMe';
 import BentoGrid from './components/BentoGrid';
 import MyProcess from './components/MyProcess';
 import SkillsGrid from './components/SkillsGrid';
+import Validation from './components/Validation';
 import ContactCTA from './components/ContactCTA';
 import Experience from './components/Experience';
 import About from './components/About';
@@ -142,6 +143,7 @@ const App: React.FC = () => {
         <SkillsGrid />
         <Experience />
         <About />
+        <Validation />
         <ContactCTA />
       </main>
     </div>
