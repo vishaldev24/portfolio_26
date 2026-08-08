@@ -266,6 +266,7 @@ const BentoGrid: React.FC = () => {
                           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white font-bold text-[10px] md:text-xs tracking-wide shadow-[0_0_20px_rgba(37,99,235,0.4)] border border-blue-400/30"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
+                          onClick={(e) => e.stopPropagation()}
                       >
                           Live Prototype →
                       </motion.a>

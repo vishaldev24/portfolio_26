@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Hero from './components/Hero';
+import WhyHireMe from './components/WhyHireMe';
 import BentoGrid from './components/BentoGrid';
 import Experience from './components/Experience';
 import About from './components/About';
@@ -134,6 +135,7 @@ const App: React.FC = () => {
 
       <main className="relative z-10 flex flex-col gap-0">
         <Hero />
+        <WhyHireMe />
         <BentoGrid />
         <Experience />
         <About />
