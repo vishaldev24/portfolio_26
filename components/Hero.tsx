@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowDownRight, Hexagon, Cpu } from 'lucide-react';
 import HeroParticles from './ui/HeroParticles';
 import Magnetic from './ui/Magnetic';
+import AvailabilityBadge from './AvailabilityBadge';
 import gsap from 'gsap';
 
 const Hero: React.FC = () => {
@@ -145,19 +146,41 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Headline Section */}
-        <div className="hero-role-wrapper max-w-4xl mx-auto mb-8 md:mb-10">
+        <div className="hero-role-wrapper max-w-4xl mx-auto mb-10 md:mb-16">
            <div className="hero-role-item overflow-hidden px-4">
-              <h2 className="font-serif text-xl md:text-4xl lg:text-5xl font-medium text-charcoal-900 dark:text-white leading-tight">
-                Product Designer (UI/UX) building <span className="italic text-neutral-500 dark:text-neutral-400 font-normal">structured, scalable digital experiences.</span>
+              <h2 className="font-serif text-2xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 dark:text-white leading-[1.1] tracking-tight">
+                Product Designer | UI/UX · Design Systems · Accessibility · Frontend-Aware
               </h2>
            </div>
         </div>
 
          {/* Subtext Section */}
-        <div className="hero-desc max-w-2xl mx-auto text-center mb-10 md:mb-12 px-6">
-           <p className="text-base md:text-xl font-light text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              3+ years leading electronics manufacturing quality systems — now applying the same <span className="text-charcoal-900 dark:text-white font-medium italic">analytical precision</span> to digital product design.
-           </p>
+        <div className="hero-desc max-w-3xl mx-auto text-center mb-12 md:mb-16 px-6">
+            <AvailabilityBadge />
+            
+            <blockquote className="text-xl md:text-2xl font-serif text-charcoal-900 dark:text-white leading-relaxed italic mb-8 border-l-4 border-blue-500 pl-6 text-left max-w-2xl mx-auto">
+                "I don't just design what looks good. I design what doesn't break."
+            </blockquote>
+            
+            <p className="text-base md:text-lg font-normal text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-2xl mx-auto">
+               3 years of QA leadership for Samsung, OnePlus, and Nokia taught me zero-error discipline. Now I build end-to-end digital products with token-first design systems, WCAG 2.2 AA accessibility, and dev-ready handoffs. Frontend-aware (React, Tailwind).
+            </p>
+        </div>
+
+        {/* Stats Bar */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-12 w-full max-w-6xl px-4">
+          {[
+            { label: "Products Shipped", value: "3", icon: "🚀" },
+            { label: "System Screens", value: "85+", icon: "🎨" },
+            { label: "Lighthouse Score", value: "98", icon: "⚡" },
+            { label: "Token Bindings", value: "2.2k+", icon: "🔗" }
+          ].map((stat, i) => (
+            <div key={i} className="flex flex-col items-center p-6 rounded-2xl bg-white/50 dark:bg-white/5 border border-neutral-200 dark:border-neutral-800 hover:border-blue-300 dark:hover:border-blue-700 transition-colors shadow-sm">
+              <span className="text-2xl mb-2">{stat.icon}</span>
+              <span className="text-3xl md:text-4xl font-extrabold text-charcoal-900 dark:text-white">{stat.value}</span>
+              <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mt-2 text-center">{stat.label}</span>
+            </div>
+          ))}
         </div>
 
         <div className="hero-cta pb-8 md:pb-0 flex items-center justify-center gap-4">

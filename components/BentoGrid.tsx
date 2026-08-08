@@ -3,7 +3,7 @@ import React, { useRef, useLayoutEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import GlassCard from './ui/GlassCard';
 import Tarang3D from './ui/Tarang3D';
-import { ArrowUpRight, Shield, Activity, X, Play, HeartPulse, Wrench } from 'lucide-react';
+import { ArrowUpRight, Shield, Activity, X, Play, HeartPulse, Wrench, Share2 } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -24,13 +24,6 @@ const projectData: Record<string, ProjectDetails> = {
     category: 'Safety & Emergency Response',
     description: 'A safety-first ecosystem combining physical emergency response and digital identity protection (Dristi). Designed for high-stakes environments where immediate physical action meets secure data integrity.',
     technologies: ['React Native', 'Biometrics', 'Real-time GPS', 'Secure Mesh']
-  },
-  vitalis: {
-    id: 'vitalis',
-    title: 'Vitalis',
-    category: 'Health Tech',
-    description: 'A data-driven health monitoring platform designed for proactive wellness. Integrates wearable telemetry with predictive AI to detect early physiological shifts, ensuring a "zero-failure" approach to personal health management.',
-    technologies: ['React', 'Next.js', 'AI/ML', 'Bluetooth Low Energy']
   },
   repairo: {
     id: 'repairo',
@@ -232,198 +225,170 @@ const BentoGrid: React.FC = () => {
             <TiltCard className="tarang-card h-full group relative overflow-visible"> 
               {/* Force the container to be solid to prevent context blanking */}
               <div className="absolute inset-0 z-0 pointer-events-none transform-gpu">
-                 <Tarang3D />
+                 <div className="absolute top-6 right-6 z-20">
+                   <Tarang3D />
+                 </div>
+                 <div className="absolute top-6 right-20 z-20">
+                   <Share2 className="w-6 h-6 text-white/50" />
+                 </div>
                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/20 to-transparent pointer-events-none" />
               </div>
-              
-              <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12 text-white pointer-events-none">
-                <div className="absolute top-6 left-6 z-20">
-                    <img src="https://i.postimg.cc/8kJV8jhv/Adobe-Express-file-1.png" alt="Tarang Logo" className="w-[80px] h-[50px]" />
-                </div>
-                <div className="transform translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                  <div className="flex items-center justify-between mb-4">
-                    <ArrowUpRight className="w-6 h-6 md:w-8 md:h-8 opacity-0 md:group-hover:opacity-100 transition-all duration-300" />
+                             <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12 text-white pointer-events-none">
+                  <div className="absolute top-6 left-6 z-20">
+                      <img src="https://i.postimg.cc/8kJV8jhv/Adobe-Express-file-1.png" alt="Tarang Logo" className="w-[80px] h-[50px]" />
                   </div>
-                  <h3 className="font-serif text-4xl md:text-6xl font-bold mb-2 drop-shadow-2xl">Tarang</h3>
-                  <p className="text-neutral-300 text-sm md:text-lg max-w-md md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 delay-100 mb-6 md:mb-8">
-                    The Intent-Driven Super-App designed to consolidate daily workflows with advanced content safety protocols.
-                  </p>
-                  
-                  <div className="flex items-center gap-4 pointer-events-auto">
-                    <motion.a 
-                        href="https://revamp-shush-22720965.figma.site/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="demo-button inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-blue-600 text-white font-bold text-[10px] md:text-xs tracking-wide shadow-[0_0_20px_rgba(37,99,235,0.4)] border border-blue-400/30"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <Play size={10} className="fill-current" />
-                        Live App
-                    </motion.a>
-                    <motion.a 
-                        href="https://tarang-case-study.vercel.app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-white/10 text-white font-bold text-[10px] md:text-xs tracking-wide border border-white/20"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        View Case Study
-                    </motion.a>
-                  </div>
-                </div>
-              </div>
-            </TiltCard>
-          </motion.div>
-
-          <motion.div 
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: true }} 
-            variants={containerVariants} 
-            className="h-[400px] md:h-full"
-          >
-            <ParallaxCard 
-              index={1}
-              className="secondary-card md:col-span-1 group cursor-pointer bg-white dark:bg-white/5 aurakshan-card active:bg-neutral-200 dark:active:bg-white/15 transition-colors duration-150"
-              bgContent={
-                <>
-                   <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-transparent" />
-                   <img 
-                    src="https://i.postimg.cc/t4Vbh7g7/Whats-App-Image-2026-02-19-at-4-19-43-PM.jpg" 
-                    alt="Aurakshan Safety" 
-                    className="w-full h-full object-cover opacity-20 dark:opacity-40 group-hover:opacity-100 transition-opacity duration-500" 
-                  />
-                </>
-              }
-            >
-               <motion.div variants={itemVariants} className="relative z-10 h-full flex flex-col justify-between p-6 md:p-8">
-                 <motion.div variants={itemVariants} className="self-end">
-                  <Shield className="w-5 h-5 md:w-6 md:h-6 text-indigo-500 group-hover:scale-110 transition-transform" />
-                 </motion.div>
-                 <motion.div variants={itemVariants} className="pointer-events-none">
-                   <h4 className="font-serif text-xl md:text-2xl font-bold mb-2 text-charcoal-900 dark:text-white">Aurakshan</h4>
-                   <p className="text-neutral-500 dark:text-neutral-400 text-[10px] font-mono mb-2 md:mb-3 uppercase tracking-wider">Safety & Response</p>
-                   <div className="overflow-hidden">
-                     <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-4 md:mb-6 leading-relaxed opacity-100 group-hover:opacity-0 translate-y-0 group-hover:-translate-y-4 transition-all duration-500">
-                       A safety ecosystem combining physical response and digital identity protection (Dristi).
-                     </p>
-                   </div>
-                 </motion.div>
-                 <motion.div variants={itemVariants} className="flex items-center gap-3 pointer-events-auto">
-                    <motion.a 
-                        href="https://aurakshan-cs-safe.lovable.app/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-600 text-white font-bold text-[10px] md:text-xs tracking-wide shadow-[0_0_20px_rgba(79,70,229,0.4)] border border-indigo-400/30"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        View Case Study
-                    </motion.a>
-                    <motion.a 
-                        href="https://memory-vary-27909173.figma.site/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/90 text-white dark:bg-white/10 dark:text-white font-bold text-[10px] md:text-xs tracking-wide border border-neutral-800 dark:border-white/20"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        Live App
-                    </motion.a>
-                 </motion.div>
-               </motion.div>
-            </ParallaxCard>
-          </motion.div>
-
-            <motion.div 
-              initial="hidden" 
-              whileInView="visible" 
-              viewport={{ once: true }} 
-              variants={containerVariants} 
-              className="h-[400px] md:h-full"
-            >
-              <ParallaxCard 
-                index={2}
-                className="secondary-card md:col-span-1 group cursor-pointer bg-white dark:bg-white/5 repairo-card active:bg-neutral-200 dark:active:bg-white/15 transition-colors duration-150"
-                bgContent={
-                  <>
-                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent" />
-                   <img 
-                      src="https://i.postimg.cc/43QfX9P5/Whats-App-Image-2026-07-06-at-12-37-08-PM.jpg" 
-                      alt="Repairo Service" 
-                      className="w-full h-full object-cover opacity-20 dark:opacity-40 group-hover:opacity-100 transition-opacity duration-500" 
-                   />
-                  </>
-                }
-              >
-                 <motion.div variants={itemVariants} className="relative z-10 h-full flex flex-col justify-between p-6 md:p-8">
-                   <motion.div variants={itemVariants} className="self-end">
-                    <Wrench className="w-5 h-5 md:w-6 md:h-6 text-blue-500 group-hover:scale-110 transition-transform" />
-                   </motion.div>
-                   <motion.div variants={itemVariants} className="pointer-events-none">
-                     <h4 className="font-serif text-xl md:text-2xl font-bold mb-2 text-charcoal-900 dark:text-white">Repairo</h4>
-                     <p className="text-neutral-500 dark:text-neutral-400 text-[10px] font-mono mb-2 md:mb-3 uppercase tracking-wider">Service Management</p>
-                     <div className="overflow-hidden">
-                       <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-4 md:mb-6 leading-relaxed">
-                         Repairo is a streamlined service management platform for repair and maintenance workflows.
-                       </p>
-                     </div>
-                   </motion.div>
-                   <motion.div variants={itemVariants} className="flex items-center gap-3 pointer-events-auto">
+                  <div className="transform translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    <h3 className="font-serif text-3xl md:text-5xl font-bold mb-2 drop-shadow-2xl">Tarang</h3>
+                    <p className="text-neutral-300 text-[10px] md:text-xs font-mono uppercase tracking-widest mb-4">B2C Social | 2025 | Full Design System | Documented Pivot</p>
+                    
+                    <div className="space-y-3 text-neutral-200 text-xs md:text-sm mb-6 max-w-sm">
+                      <p><strong className="text-white">Problem:</strong> Social media algorithms prioritize engagement over wellbeing.</p>
+                      <p><strong className="text-white">Solution:</strong> Built the Shield feature — intent-first control over content.</p>
+                      <p><strong className="text-white">Impact:</strong> Complete design system, mobile-first, scalable to tablet.</p>
+                      <p className="text-[10px] text-neutral-400 uppercase tracking-wide">Skills: Product Strategy · Design System · Mobile-First · Motion Design</p>
+                    </div>
+                    
+                    <div className="flex items-center gap-4 pointer-events-auto">
                       <motion.a 
-                          href="https://repairo-case-showcase.lovable.app"
+                          href="https://tarang-case-study.vercel.app"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white font-bold text-[10px] md:text-xs tracking-wide border border-white/20"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                      >
+                          View Case Study →
+                      </motion.a>
+                      <motion.a 
+                          href="https://revamp-shush-22720965.figma.site/"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white font-bold text-[10px] md:text-xs tracking-wide shadow-[0_0_20px_rgba(37,99,235,0.4)] border border-blue-400/30"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                       >
-                          View Case Study
+                          Live Prototype →
                       </motion.a>
+                    </div>
+                  </div>
+                </div>
+            </TiltCard>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="aurakshan-card-wrapper md:col-span-2 block group relative overflow-visible cursor-pointer min-h-[450px]"
+          >
+            <TiltCard className="aurakshan-card h-full group relative overflow-visible bg-black">
+               <div className="absolute inset-0 z-0 pointer-events-none transform-gpu">
+                  <div className="absolute top-6 right-6 z-20">
+                    <Shield className="w-12 h-12 text-indigo-500 opacity-50" />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/20 to-transparent pointer-events-none" />
+               </div>
+               
+               <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12 text-white pointer-events-none">
+                  <div className="absolute top-6 left-6 z-20">
+                      <img src="https://i.postimg.cc/t4Vbh7g7/Whats-App-Image-2026-02-19-at-4-19-43-PM.jpg" alt="Aurakshan Logo" className="w-[80px] h-[50px] object-cover rounded" />
+                  </div>
+                  <div className="transform translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    <h3 className="font-serif text-3xl md:text-5xl font-bold mb-2 drop-shadow-2xl">Aurakshan</h3>
+                    <p className="text-neutral-300 text-[10px] md:text-xs font-mono uppercase tracking-widest mb-4">Safety Ecosystem | 2026 | 32 Screens | 8 User Interviews | Documented Pivot</p>
+                    
+                    <div className="space-y-3 text-neutral-200 text-xs md:text-sm mb-6 max-w-sm">
+                      <p><strong className="text-white">Problem:</strong> Urban Indian women need a safety ecosystem — without surveillance.</p>
+                      <p><strong className="text-white">Research:</strong> 8 interviews revealed always-on AI felt surveilled.</p>
+                      <p><strong className="text-white">Pivot:</strong> Scrapped AI. Rebuilt with trauma-informed design.</p>
+                      <p><strong className="text-white">Impact:</strong> 98/100 Lighthouse accessibility score.</p>
+                      <p className="text-[10px] text-neutral-400 uppercase tracking-wide">Skills: User Research · Trauma-Informed Design · Accessibility · Feature Pivot</p>
+                    </div>
+                    
+                    <div className="flex items-center gap-4 pointer-events-auto">
                       <motion.a 
-                          href="https://action-flee-78878932.figma.site/"
+                          href="https://aurakshan-cs-safe.lovable.app/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/90 text-white dark:bg-white/10 dark:text-white font-bold text-[10px] md:text-xs tracking-wide border border-neutral-800 dark:border-white/20"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white font-bold text-[10px] md:text-xs tracking-wide border border-white/20"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                       >
-                          Live App
+                          View Case Study →
                       </motion.a>
-                   </motion.div>
-                 </motion.div>
-              </ParallaxCard>
-            </motion.div>
+                      <motion.a 
+                          href="https://memory-vary-27909173.figma.site/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white font-bold text-[10px] md:text-xs tracking-wide shadow-[0_0_20px_rgba(79,70,229,0.4)] border border-blue-400/30"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                      >
+                          Live Prototype →
+                      </motion.a>
+                    </div>
+                  </div>
+                </div>
+            </TiltCard>
+          </motion.div>
 
-            <div className="h-[400px] md:h-full">
-              <ParallaxCard 
-                index={3}
-                className="secondary-card md:col-span-1 group cursor-pointer shadow-sm bg-white dark:bg-white/5"
-                onClick={() => setSelectedProject(projectData.vitalis)}
-                bgContent={
-                   <div className="absolute inset-0 bg-gradient-to-bl from-rose-500/10 to-transparent" />
-                }
-              >
-                <div className="relative z-10 h-full flex flex-col justify-between p-6 md:p-8 pointer-events-none">
-                   <div className="self-end">
-                    <HeartPulse className="w-5 h-5 md:w-6 md:h-6 text-rose-500 group-hover:scale-110 transition-transform" />
-                   </div>
-                   <div>
-                     <h4 className="font-serif text-xl md:text-2xl font-bold mb-2 text-charcoal-900 dark:text-white">Vitalis</h4>
-                     <div className="flex items-center justify-between mb-2 md:mb-3">
-                       <p className="text-neutral-500 dark:text-neutral-400 text-[10px] font-mono uppercase tracking-wider">Health Tech</p>
-                       <span className="px-3 py-1 bg-amber-500/10 text-amber-600 rounded-full text-[9px] font-mono uppercase">Adding Soon</span>
-                     </div>
-                     <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-4 md:mb-6 leading-relaxed">
-                       Data-driven health monitoring designed for proactive wellness and predictive telemetry.
-                     </p>
-                     <span className="text-rose-600 dark:text-rose-400 font-mono text-[10px] font-bold tracking-widest uppercase">[ View Case Study → ]</span>
-                   </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="repairo-card-wrapper md:col-span-2 block group relative overflow-visible cursor-pointer min-h-[450px]"
+            >
+              <TiltCard className="repairo-card h-full group relative overflow-visible bg-black">
+                 <div className="absolute inset-0 z-0 pointer-events-none transform-gpu">
+                    <div className="absolute top-6 right-6 z-20">
+                      <Wrench className="w-12 h-12 text-blue-500 opacity-50" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/20 to-transparent pointer-events-none" />
                  </div>
-              </ParallaxCard>
-            </div>
+                 
+                 <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12 text-white pointer-events-none">
+                    <div className="absolute top-6 left-6 z-20">
+                        <img src="https://i.postimg.cc/43QfX9P5/Whats-App-Image-2026-07-06-at-12-37-08-PM.jpg" alt="Repairo Logo" className="w-[80px] h-[50px] object-cover rounded" />
+                    </div>
+                    <div className="transform translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                      <h3 className="font-serif text-3xl md:text-5xl font-bold mb-2 drop-shadow-2xl">Repairo</h3>
+                      <p className="text-neutral-300 text-[10px] md:text-xs font-mono uppercase tracking-widest mb-4">B2B SaaS | 2026 | 85 Screens | Complete Design System</p>
+                      
+                      <div className="space-y-3 text-neutral-200 text-xs md:text-sm mb-6 max-w-sm">
+                        <p><strong className="text-white">Problem:</strong> Traditional form-based job tracking created friction for low-literacy repair workers.</p>
+                        <p><strong className="text-white">Solution:</strong> Photo-first documentation, icon-based navigation, removing literacy barriers.</p>
+                        <p><strong className="text-white">Impact:</strong> 2,244+ token-referenced fill bindings across 85 screens. Dev-handoff ready.</p>
+                        <p className="text-[10px] text-neutral-400 uppercase tracking-wide">Skills: Low-Literacy UX · Design Tokens · Auto Layout · Dev Handoff</p>
+                      </div>
+                      
+                      <div className="flex items-center gap-4 pointer-events-auto">
+                        <motion.a 
+                            href="https://repairo-case-showcase.lovable.app"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white font-bold text-[10px] md:text-xs tracking-wide border border-white/20"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            View Case Study →
+                        </motion.a>
+                        <motion.a 
+                            href="https://action-flee-78878932.figma.site/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white font-bold text-[10px] md:text-xs tracking-wide shadow-[0_0_20px_rgba(37,99,235,0.4)] border border-blue-400/30"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            Live Prototype →
+                        </motion.a>
+                      </div>
+                    </div>
+                  </div>
+              </TiltCard>
+            </motion.div>
 
         </div>
       </div>
