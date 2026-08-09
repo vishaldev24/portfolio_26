@@ -16,7 +16,7 @@ const skillsData = [
   },
   {
     title: "Code & AI",
-    items: ["React.js", "HTML/CSS & Tailwind", "JavaScript", "GitHub", "Claude AI", "LLM-Assisted Workflows"]
+    items: ["React.js", "HTML/CSS & Tailwind", "JavaScript", "GitHub", "Claude AI", "LLM-Assisted Workflows", "Google Analytics"]
   }
 ];
 
