@@ -195,12 +195,12 @@ const Hero: React.FC = () => {
             </Magnetic>
             <Magnetic strength={0.2}>
               <a 
-                href="https://drive.google.com/file/d/1YKtTFi-2w61LSSzdH4EVSuR0LEP0sjSZ/view?usp=drive_link"
+                href="https://drive.google.com/file/d/1o9MhtuqkJzMuv1g4QoabVZaryPigN6Iq/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-transparent text-charcoal-900 dark:text-white rounded-full text-base md:text-lg font-bold tracking-tight hover:scale-105 transition-all duration-300 shadow-none border border-neutral-300 dark:border-white/20"
               >
-                View Resume
+                Download Resume
               </a>
             </Magnetic>
         </div>
