@@ -15,7 +15,7 @@ const testimonials = [
 
 const Validation: React.FC = () => {
   return (
-    <section className="py-24 px-6 md:px-12 bg-white dark:bg-charcoal-900 transition-colors duration-500">
+    <section id="validation" className="py-24 px-6 md:px-12 bg-white dark:bg-charcoal-900 transition-colors duration-500">
       <div className="max-w-5xl mx-auto">
         <motion.div 
             initial={{ opacity: 0, y: 20 }}

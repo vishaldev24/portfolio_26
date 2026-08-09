@@ -127,10 +127,10 @@ const TerminalView = () => (
     >
         {/* Metrics Grid */}
         <div className="grid grid-cols-2 gap-3 mb-4">
-            <MetricCard label="Logic" value="100%" percentage={100} color="text-blue-600 dark:text-blue-400" delay={0.1} />
-            <MetricCard label="Heuristic" value="Pass" percentage={100} color="text-green-600 dark:text-green-400" delay={0.2} />
-            <MetricCard label="Ambiguity" value="0%" percentage={0} color="text-neutral-400 dark:text-neutral-300" delay={0.3} />
-            <MetricCard label="Latency" value="12ms" icon={ZapIcon} color="text-yellow-500 dark:text-yellow-400" delay={0.4} />
+            <MetricCard label="QA Experience" value="3 Years" color="text-blue-600 dark:text-blue-400" delay={0.1} />
+            <MetricCard label="Team Supervision" value="35+ Members" color="text-green-600 dark:text-green-400" delay={0.2} />
+            <MetricCard label="Defect Reduction" value="30% → 10%" color="text-neutral-400 dark:text-neutral-300" delay={0.3} />
+            <MetricCard label="Inspector Training" value="40+" color="text-yellow-500 dark:text-yellow-400" delay={0.4} />
         </div>
 
         {/* Live Log */}

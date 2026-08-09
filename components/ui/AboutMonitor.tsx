@@ -171,9 +171,9 @@ const AboutMonitor: React.FC = () => {
                         <div className="flex gap-1">
                             {[1, 2, 3].map(i => <div key={i} className="w-1.5 h-1.5 rounded-full bg-blue-500" />)}
                         </div>
-                        <span className="text-[9px] font-mono tracking-widest uppercase text-neutral-500">Root Cause Strategy</span>
+                        <span className="text-[9px] font-mono tracking-widest uppercase text-neutral-500">Google UX Design Certificate — 2025</span>
                     </div>
-                    <span className="text-[9px] font-mono tracking-widest uppercase text-neutral-500">Version 2025</span>
+                    <span className="text-[9px] font-mono tracking-widest uppercase text-neutral-500">3 Production Products Shipped — 2025</span>
                 </motion.div>
             </div>
           </div>

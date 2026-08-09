@@ -4,7 +4,7 @@ import { Mail, Phone, Linkedin, Globe, Zap } from 'lucide-react';
 
 const ContactCTA: React.FC = () => {
   return (
-    <section className="py-24 px-6 md:px-12 bg-neutral-950 text-white">
+    <section id="contact" className="py-24 px-6 md:px-12 bg-neutral-950 text-white">
       <div className="max-w-4xl mx-auto">
         <motion.div 
             initial={{ opacity: 0, y: 20 }}

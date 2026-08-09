@@ -22,7 +22,7 @@ const skillsData = [
 
 const SkillsGrid: React.FC = () => {
   return (
-    <section className="py-24 px-6 md:px-12 bg-neutral-50 dark:bg-charcoal-950 transition-colors duration-500">
+    <section id="skills" className="py-24 px-6 md:px-12 bg-neutral-50 dark:bg-charcoal-950 transition-colors duration-500">
       <div className="max-w-7xl mx-auto">
         <motion.h2 
             initial={{ opacity: 0, y: 20 }}

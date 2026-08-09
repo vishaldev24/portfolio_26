@@ -37,7 +37,7 @@ const Experience: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="relative mb-16"
         >
-          <span className="text-blue-600 dark:text-blue-400 font-mono text-xs tracking-[0.3em] uppercase mb-4 block">Industrial Precision</span>
+          <span className="text-blue-600 dark:text-blue-400 font-mono text-xs tracking-[0.3em] uppercase mb-4 block">CAREER BACKGROUND</span>
           <h2 className="font-serif text-4xl md:text-6xl font-bold text-charcoal-900 dark:text-white">Professional Experience</h2>
         </motion.div>
 
@@ -120,7 +120,6 @@ const Experience: React.FC = () => {
                 <div className="flex gap-1">
                    {[1,2,3,4,5].map(i => <div key={i} className="w-1 h-1 bg-neutral-400 rounded-full" />)}
                 </div>
-                <span className="text-[10px] font-mono uppercase tracking-[0.4em]">End_of_Transmission</span>
               </div>
             </motion.div>
           </div>
