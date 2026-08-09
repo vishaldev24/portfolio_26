@@ -123,6 +123,22 @@
 
     gtag('config', 'G-CBN12W65CZ');
   </script>
+  <script>
+    // Track clicks on case study links
+    document.addEventListener('DOMContentLoaded', function() {
+      // Track all links that go to case studies
+      const caseStudyLinks = document.querySelectorAll('a[href*="lovable.app"], a[href*="figma.site"], a[href*="vercel.app"]');
+      
+      caseStudyLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          gtag('event', 'click_case_study', {
+            'case_study_name': link.textContent.trim(),
+            'case_study_url': link.href
+          });
+        });
+      });
+    });
+  </script>
 </head>
   <body class="bg-paper-200 text-charcoal-900 dark:bg-charcoal-900 dark:text-white transition-colors duration-500 relative">
     <div id="loader">
