@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Briefcase, User, Cpu, Mail, LayoutGrid, Award } from 'lucide-react';
+import { Home, Briefcase, User, Cpu, Mail, LayoutGrid } from 'lucide-react';
 
 const navItems = [
   { id: 'hero-section', label: 'Home', icon: <Home size={18} /> },
@@ -9,7 +9,6 @@ const navItems = [
   { id: 'experience', label: 'Recent Work', icon: <Briefcase size={18} /> },
   { id: 'about', label: 'About', icon: <User size={18} /> },
   { id: 'skills', label: 'Skills', icon: <Cpu size={18} /> },
-  { id: 'validation', label: 'Validation', icon: <Award size={18} /> },
   { id: 'contact', label: 'Contact', icon: <Mail size={18} /> },
 ];
 

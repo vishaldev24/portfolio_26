@@ -173,7 +173,7 @@ const AboutMonitor: React.FC = () => {
                         </div>
                         <span className="text-[9px] font-mono tracking-widest uppercase text-neutral-500">Google UX Design Certificate — 2025</span>
                     </div>
-                    <span className="text-[9px] font-mono tracking-widest uppercase text-neutral-500">3 Production Products Shipped — 2025</span>
+                    <span className="text-[9px] font-mono tracking-widest uppercase text-neutral-500">3 End-to-End Product Design Case Studies — 2025</span>
                 </motion.div>
             </div>
           </div>

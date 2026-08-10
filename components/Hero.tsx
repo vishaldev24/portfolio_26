@@ -109,7 +109,7 @@ const Hero: React.FC = () => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                <span className="text-[9px] md:text-xs font-mono uppercase tracking-[0.2em] text-neutral-600 dark:text-neutral-400 whitespace-nowrap">Available for 2026</span>
+                <span className="text-[9px] md:text-xs font-mono uppercase tracking-[0.2em] text-neutral-600 dark:text-neutral-400 whitespace-nowrap">Available Immediately</span>
             </div>
         </div>
 
@@ -170,7 +170,7 @@ const Hero: React.FC = () => {
         {/* Stats Bar */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-12 w-full max-w-6xl px-4">
           {[
-            { label: "Products Shipped", value: "3", icon: "🚀" },
+            { label: "End-to-End Product Design Case Studies", value: "3", icon: "🚀" },
             { label: "System Screens", value: "85+", icon: "🎨" },
             { label: "Lighthouse Score", value: "98", icon: "⚡" },
             { label: "Token Bindings", value: "2.2k+", icon: "🔗" }

@@ -143,7 +143,6 @@ const App: React.FC = () => {
         <SkillsGrid />
         <Experience />
         <About />
-        <Validation />
         <ContactCTA />
       </main>
     </div>
