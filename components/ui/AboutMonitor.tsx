@@ -159,7 +159,7 @@ const AboutMonitor: React.FC = () => {
                     </motion.div>
 
                     <motion.p variants={itemVariants} className="text-base md:text-lg font-light leading-relaxed text-neutral-600 dark:text-neutral-400 border-l-2 border-blue-500/30 pl-6">
-                        In 2025, I completed the Google UX Design Professional Certificate and have since built three production-level products from scratch — each with complete design systems, documented research, working prototypes, and dev-ready handoffs.
+                        In 2025, I completed the Google UX Design Professional Certificate and have since built three production-ready products from scratch — each with complete design systems, documented research, working prototypes, and dev-ready handoffs.
 
                         I'm not looking for a job where I push pixels. I'm looking for a team where I can own features, research real users, and build products that work for everyone.
                     </motion.p>
