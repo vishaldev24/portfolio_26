@@ -209,7 +209,7 @@ const BentoGrid: React.FC = () => {
               Selected Work
             </motion.h2>
           </div>
-          <span className="text-neutral-500 font-mono text-xs">[01 — 03]</span>
+          <span className="text-neutral-500 font-mono text-xs">[01 — 04]</span>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 md:auto-rows-[500px]">
@@ -384,6 +384,49 @@ const BentoGrid: React.FC = () => {
                             whileTap={{ scale: 0.95 }}
                         >
                             Live Prototype →
+                        </motion.a>
+                      </div>
+                    </div>
+                  </div>
+              </TiltCard>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="meridian-card-wrapper md:col-span-2 block group relative overflow-visible cursor-pointer min-h-[450px]"
+            >
+              <TiltCard className="meridian-card h-full group relative overflow-visible bg-black">
+                 <div className="absolute inset-0 z-0 pointer-events-none transform-gpu">
+                    <div className="absolute top-6 right-6 z-20">
+                      <Activity className="w-12 h-12 text-teal-500 opacity-50" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/20 to-transparent pointer-events-none" />
+                 </div>
+                 
+                 <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12 text-white pointer-events-none">
+                    <div className="transform translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                      <h3 className="font-serif text-3xl md:text-5xl font-bold mb-2 drop-shadow-2xl">Meridian</h3>
+                      <p className="text-neutral-300 text-[10px] md:text-xs font-mono uppercase tracking-widest mb-4">Rapid Fintech Prototype | 2026 | v0 → Vercel | 15-Min Sprint</p>
+                      
+                      <div className="space-y-3 text-neutral-200 text-xs md:text-sm mb-6 max-w-sm">
+                        <p><strong className="text-white">Description:</strong> Personal finance dashboard exploring daily spend tracking, category budgets, and transaction history. Built to test design-to-code velocity for fintech interfaces.</p>
+                        <p className="text-[10px] text-neutral-400 uppercase tracking-wide">Skills: Fintech UX · Design-to-Code · Rapid Prototyping · Performance Testing</p>
+                        <p className="text-[10px] text-neutral-400 uppercase tracking-wide">Lighthouse: 98 Performance · 94 Accessibility · 100 Best Practices · 100 SEO</p>
+                      </div>
+                      
+                      <div className="flex items-center gap-4 pointer-events-auto">
+                        <motion.a 
+                            href="https://meridian-sage-six.vercel.app/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white font-bold text-[10px] md:text-xs tracking-wide shadow-[0_0_20px_rgba(37,99,235,0.4)] border border-blue-400/30"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            Live Demo →
                         </motion.a>
                       </div>
                     </div>
